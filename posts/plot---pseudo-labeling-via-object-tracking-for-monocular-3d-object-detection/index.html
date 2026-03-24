@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3334&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection">
+  <meta property="og:description" content="🏛️ 会议/期刊：ICLR
+📅 发表年份：2026
+💻 开源代码：无
+📄 论文题目：PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection
+一、 背景、研究目的与核心问题 研究背景： 单目 3D 目标检测模型极度“吃数据”。然而，人工标注 3D 边界框极其昂贵且耗时，导致目前带 3D 标签的数据集规模很小，严重限制了模型的泛化能力。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-15T20:52:51+08:00">
+    <meta property="article:modified_time" content="2026-03-15T20:52:51+08:00">
+    <meta property="article:tag" content="额外的深度模型">
+    <meta property="article:tag" content="伪标签生成">
+    <meta property="article:tag" content="时序聚合">
+    <meta property="og:image" content="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/cover.jpg">
+  <meta name="twitter:title" content="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：ICLR
+📅 发表年份：2026
+💻 开源代码：无
+📄 论文题目：PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection
+一、 背景、研究目的与核心问题 研究背景： 单目 3D 目标检测模型极度“吃数据”。然而，人工标注 3D 边界框极其昂贵且耗时，导致目前带 3D 标签的数据集规模很小，严重限制了模型的泛化能力。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" /><link rel="prev" href="http://localhost:3334/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" /><link rel="next" href="http://localhost:3334/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:3334\/posts\/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection\/"
+        },"genre": "posts","keywords": "额外的深度模型, 伪标签生成, 时序聚合","wordcount":  2171 ,
+        "url": "http:\/\/localhost:3334\/posts\/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection\/","datePublished": "2026-03-15T20:52:51+08:00","dateModified": "2026-03-15T20:52:51+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/avatar256.png"
+        data-srcset="/images/avatar256.png, /images/avatar256.png 1.5x, /images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/images/avatar256.png"
+        title="/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 主页 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/avatar256.png"
+        data-srcset="/images/avatar256.png, /images/avatar256.png 1.5x, /images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/images/avatar256.png"
+        title="/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="">主页</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/centernet-based/"><i class="far fa-folder" aria-hidden="true"></i>CenterNet-Based</a>&nbsp;<a href="/categories/transformer-based/"><i class="far fa-folder" aria-hidden="true"></i>Transformer-Based</a>&nbsp;<a href="/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/"><i class="far fa-folder" aria-hidden="true"></i>即插即用型</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-15">2026-03-15</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 2171 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</a></li>
+        <li><a href="#二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</a>
+          <ul>
+            <li><a href="#1-核心方法plot-框架-跨帧聚合">1. 核心方法：PLOT 框架 (跨帧聚合)</a></li>
+            <li><a href="#2-关键数据与主要发现">2. 关键数据与主要发现</a></li>
+            <li><a href="#3-结论">3. 结论</a></li>
+          </ul>
+        </li>
+        <li><a href="#三-新颖概念通俗解释">三、 新颖概念通俗解释</a></li>
+        <li><a href="#四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：ICLR<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">无</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openreview.net/pdf?id=3knS4J9isg" target="_blank" rel="noopener noreffer ">PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 单目 3D 目标检测模型极度“吃数据”。然而，人工标注 3D 边界框极其昂贵且耗时，导致目前带 3D 标签的数据集规模很小，严重限制了模型的泛化能力。</p>
+</li>
+<li>
+<p><strong>研究目的：</strong> 旨在提出一种自动化、可扩展的**伪标签（Pseudo-Labeling）**生成框架。目标是仅仅利用互联网上海量的、最容易获取的普通无标注单目视频（Monocular Video），就能自动生成高质量的 3D 训练数据。</p>
+</li>
+<li>
+<p><strong>核心问题（痛点）：</strong> 现有的伪标签生成方法大多是基于“单张图像（Single-frame）”进行的。由于单图缺乏深度，生成的伪标签存在严重的<strong>尺度模糊（Scale Ambiguity</strong>）和<strong>形状残缺（Incomplete 3D Shapes）</strong>（比如由于遮挡或视角问题，只能看到车的一侧）。用这种劣质的“伪数据”去训练模型，性能提升非常有限。</p>
+</li>
+</ul>
+<hr>
+<figure><img src="/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/main.jpg" width="100%"><figcaption>
+      <h4>整体框架图</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</h3>
+<h4 id="1-核心方法plot-框架-跨帧聚合">1. 核心方法：PLOT 框架 (跨帧聚合)</h4>
+<p>PLOT 的核心思想极其巧妙：利用时间维度上的信息增量，来弥补单视角空间维度上的信息缺失。它彻底抛弃了对多视角相机、真实激光雷达或相机位姿（Camera Poses）的依赖。</p>
+<ul>
+<li>
+<p><strong>逐帧预测与 2D 跟踪：</strong> 首先利用现成的单目深度估计模型获取视频每一帧的深度图，并使用 2D 点跟踪器（Point Tracker）在视频流中跨帧锁定同一个目标（无论它是静态的还是动态移动的）。</p>
+</li>
+<li>
+<p><strong>跨帧伪点云聚合 (Pseudo-LiDAR Aggregation)：</strong> 随着视频的播放，目标或相机的移动会逐渐暴露出物体的不同侧面。PLOT 利用点跟踪的对应关系，将相邻多帧生成的残缺“伪激光雷达点云”精准地对齐、拼接在一起，从而“拼凑”出一个稠密、完整的 3D 形状。</p>
+</li>
+<li>
+<p><strong>去噪与 3D 属性提取：</strong> 基于这个补全后的丰满 3D 点云，系统会进行深度截断等滤波去噪操作，最后从中提取出高度精确的 3D 属性（长宽高、3D 中心点、偏航角），生成最终的 3D 伪标签。</p>
+</li>
+</ul>
+<h4 id="2-关键数据与主要发现">2. 关键数据与主要发现</h4>
+<ul>
+<li>
+<p><strong>标签质量飞跃：</strong> 在 KITTI 数据集上的验证表明，相比基于单图生成的伪标签，PLOT 生成的 3D 属性误差（包括朝向、平移和尺寸误差）大幅下降，尤其在单目最容易出错的<strong>中远距离区域</strong>，其准确度提升尤为显著。</p>
+</li>
+<li>
+<p><strong>模型性能暴涨：</strong> 将 PLOT 自动生成的伪标签喂给现有的监督型 M3OD 模型（如 MonoDETR、GUPNet）进行训练，其核心指标 APBEV（鸟瞰图平均精度）在 KITTI 上暴涨了约 <strong>11%</strong>，甚至超越了许多依赖复杂设计的弱监督方法。</p>
+</li>
+<li>
+<p><strong>跨域泛化能力：</strong> 该方法在从未见过的多样化视频数据集（如 MOT17、DIVOTrack）上依然能生成合理的 3D 伪标签，证明了极强的鲁棒性。</p>
+</li>
+</ul>
+<h4 id="3-结论">3. 结论</h4>
+<p>跨帧的视频级目标跟踪可以有效打破单目 2D-to-3D 的内在模糊性壁垒。PLOT 证明了，无需昂贵的多传感器标定数据，仅凭单目视频的时序逻辑，就能实现高精度的 3D 数据闭环和规模化扩张。</p>
+<figure><img src="/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/result.jpg" width="90%"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="三-新颖概念通俗解释">三、 新颖概念通俗解释</h3>
+<ul>
+<li>
+<p><strong>伪激光雷达 (Pseudo-LiDAR)：</strong></p>
+<p>普通的单张照片是平面的二维像素。如果我们用 AI 模型估算出每个像素的“深度（距离）”，然后把这些像素按照距离远近“推”进一个虚拟的三维空间里，它们就会变成一堆悬浮在空中的 3D 坐标点。这堆点看起来非常像昂贵的激光雷达（LiDAR）扫描出来的真实物理点云，因此被称为“伪激光雷达”。</p>
+</li>
+<li>
+<p><strong>基于跟踪的跨帧聚合 (Temporal Aggregation via Tracking)：</strong></p>
+<p>想象你在看一张汽车的侧面照片，你很难猜出它到底有多宽，这就是单图的“形状残缺”。跨帧聚合就像是你在看一段汽车开过的视频：第一秒你看到了车头，第三秒看到了侧面，第五秒看到了车尾。通过在视频中<strong>持续跟踪</strong>这辆车，把你在这几秒内看到的局部画面在系统中“拼接”融合起来，你就能建立一个完整、准确的 3D 汽车模型。</p>
+</li>
+</ul>
+<hr>
+<h3 id="四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</h3>
+<p><strong>优点：</strong></p>
+<ol>
+<li>
+<p><strong>极致的泛化性与低成本：</strong> 这是它最大的卖点。不需要雷达，不需要多视角标定，只要有普通的单目视频就能跑，真正实现了获取 3D 数据的“降本增效”。</p>
+</li>
+<li>
+<p><strong>巧妙的降维打击：</strong> 用视频时间维度的丰富性，优雅地化解了单张图像在空间几何上的病态缺陷，逻辑非常直观且有效。</p>
+</li>
+</ol>
+<p><strong>缺点与局限性：</strong></p>
+<ol>
+<li><strong>错误级联效应 (Error Cascading)：</strong> 整个框架的下限取决于前端“2D 跟踪器”和“单目深度估计”的稳定性。一旦在复杂遮挡下跟踪目标漂移，或者单目深度估计发生系统性偏移，多帧聚合在一起的点云就会变成一团相互错位的“幽灵马赛克”。从这种充满噪声的聚合点云中提取的伪标签，反而会毒害后续的 M3OD 训练。</li>
+</ol>
+<p><strong>极具潜力的后续研究方向（破局点）：</strong></p>
+<p>基于上述多帧聚合带来的噪声问题，该框架在未来有几个非常清晰的优化路径：</p>
+<ol>
+<li>
+<p><strong>引入多粒度特征恢复 (Multi-Granularity Feature Restoration)：</strong> 为了解决多帧点云强制拼接带来的噪点和几何缝隙，可以在 3D 属性提取阶段之前，加入多粒度的特征修复机制。例如，先从微观的局部（点/体素粒度）平滑由于跟踪漂移带来的几何毛刺，再从宏观（物体级语义粒度）修复残缺的结构，从而使得最终生成的 3D 伪标签边界更加锐利、准确。</p>
+</li>
+<li>
+<p><strong>融合场景拓扑正则化 (Scene Topological Regularization)：</strong> 目前的 PLOT 仅专注于孤立地跟踪和聚合单个物体。如果在聚合跨帧数据的过程中，引入场景级的拓扑正则化约束——例如强制要求聚合出的 3D 汽车底部不能穿透路面（地面先验），或者动态物体之间不能发生物理重叠——就可以利用全局的物理法则强行纠正跟踪器带来的局部偏移，确保生成的 3D 伪标签在宏观物理世界中是严密且合理的。</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" data-title="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection" data-hashtags="额外的深度模型,伪标签生成,时序聚合"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" data-title="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" data-hashtag="额外的深度模型"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" data-title="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" data-title="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" data-title="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" data-title="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a3334%2fposts%2fplot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection%2f&amp;text=PLOT%3a%20Pseudo-Labeling%20via%20Object%20Tracking%20for%20Monocular%203D%20Object%20Detection" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/%E9%A2%9D%E5%A4%96%E7%9A%84%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/">额外的深度模型</a>,&nbsp;<a href="/tags/%E4%BC%AA%E6%A0%87%E7%AD%BE%E7%94%9F%E6%88%90/">伪标签生成</a>,&nbsp;<a href="/tags/%E6%97%B6%E5%BA%8F%E8%81%9A%E5%90%88/">时序聚合</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" class="prev" rel="prev" title="Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection"><i class="fas fa-angle-left" aria-hidden="true"></i>Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</a>
+            <a href="/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" class="next" rel="next" title="MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver">MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/lightgallery/lightgallery.min.js"></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/katex/katex.min.js"></script><script src="/lib/katex/contrib/auto-render.min.js"></script><script src="/lib/katex/contrib/copy-tex.min.js"></script><script src="/lib/katex/contrib/mhchem.min.js"></script><script src="/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.js"></script></body>
+</html>

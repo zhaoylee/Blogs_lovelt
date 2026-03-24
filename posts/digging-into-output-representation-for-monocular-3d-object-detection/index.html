@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3334&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION">
+  <meta property="og:description" content="🏛️ 会议/期刊：ICLR
+📅 发表年份：2022
+💻 开源代码：GitHub 链接
+📄 论文题目：DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION
+0. 一句话总结 (TL;DR) (这篇论文用什么方法，解决了什么问题，达到了什么效果)">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-13T15:27:43+08:00">
+    <meta property="article:modified_time" content="2026-03-13T15:27:43+08:00">
+    <meta property="article:tag" content="一对多">
+    <meta property="article:tag" content="深度采样">
+    <meta property="article:tag" content="后处理">
+    <meta property="og:image" content="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg">
+  <meta name="twitter:title" content="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：ICLR
+📅 发表年份：2022
+💻 开源代码：GitHub 链接
+📄 论文题目：DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION
+0. 一句话总结 (TL;DR) (这篇论文用什么方法，解决了什么问题，达到了什么效果)">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/" /><link rel="prev" href="http://localhost:3334/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" /><link rel="next" href="http://localhost:3334/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:3334\/posts\/digging-into-output-representation-for-monocular-3d-object-detection\/"
+        },"genre": "posts","keywords": "一对多, 深度采样, 后处理","wordcount":  1390 ,
+        "url": "http:\/\/localhost:3334\/posts\/digging-into-output-representation-for-monocular-3d-object-detection\/","datePublished": "2026-03-13T15:27:43+08:00","dateModified": "2026-03-13T15:27:43+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/avatar256.png"
+        data-srcset="/images/avatar256.png, /images/avatar256.png 1.5x, /images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/images/avatar256.png"
+        title="/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 主页 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/avatar256.png"
+        data-srcset="/images/avatar256.png, /images/avatar256.png 1.5x, /images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/images/avatar256.png"
+        title="/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="">主页</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/"><i class="far fa-folder" aria-hidden="true"></i>即插即用型</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-13">2026-03-13</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1390 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0-一句话总结-tldr">0. 一句话总结 (TL;DR)</a></li>
+    <li><a href="#1-动机与问题-motivation">1. 动机与问题 (Motivation)</a></li>
+    <li><a href="#2-核心方法-method">2. 核心方法 (Method)</a></li>
+    <li><a href="#3-实验与启发-experiments--takeaways">3. 实验与启发 (Experiments &amp; Takeaways)</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：ICLR<br>
+<strong>📅 发表年份</strong>：2022<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/Owen-Liuyuxuan/visualDet3D/releases/tag/1.1.1" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openreview.net/pdf?id=mPlm356yMIP" target="_blank" rel="noopener noreffer ">DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION</a></p>
+</blockquote>
+<hr>
+<h2 id="0-一句话总结-tldr">0. 一句话总结 (TL;DR)</h2>
+<p><em>(这篇论文用什么方法，解决了什么问题，达到了什么效果)</em></p>
+<p>这篇论文提出将单目3D检测的输出形式从“单一且固定的离散3D边界框”重新构建为“基于深度的连续空间概率分布”。它解决了一张2D图像向3D推理时由于“维度鸿沟（Dimension Gap）”带来的深度估计极度不确定的问题。通过这种不确定性建模与沿深度的多次采样，在不改变原有网络架构的前提下，使得 12 个当时的 SOTA 模型在 KITTI 数据集上的 Average Precision (AP) 获得了约 20% 的惊人相对提升。</p>
+<hr>
+<h2 id="1-动机与问题-motivation">1. 动机与问题 (Motivation)</h2>
+<p><em>(现有的单目3D检测有什么痛点？)</em></p>
+<p>目前的单目3D检测面临一个天然的物理限制：<strong>维度鸿沟 (Dimension Gap)</strong>。</p>
+<ul>
+<li>
+<p><strong>信息不对等导致误差放大：</strong> 模型的输入是低维的（2D像素），但需要输出高维信息（3D坐标和体积）。这种缺失深度的病态设定，导致深度估计的误差存在一个极高的理论下界，并且这个误差会随着物体距离的增加呈二次方或指数级急剧放大。</p>
+</li>
+<li>
+<p><strong>现有表示方法过于“武断”：</strong> 绝大多数现有方法（包括之前的 SOTA）在输出时，都只给出一个绝对离散的、确定的 3D 预测框。但在深度极度不确定的情况下（比如 60 米外的车），给出一个“死板”的绝对坐标是非常不合理的，它完全掩盖了预测结果本身包含的巨大方差。</p>
+</li>
+</ul>
+<hr>
+<p><em><figure><img src="/posts/digging-into-output-representation-for-monocular-3d-object-detection/main.jpg" width="100%"><figcaption>
+      <h4>整体框架图</h4>
+    </figcaption>
+</figure>
+</em></p>
+<hr>
+<h2 id="2-核心方法-method">2. 核心方法 (Method)</h2>
+<p><em>(具体怎么做的？比如额外辅助模型是怎么引入的？数据增强的具体流程是什么？)</em></p>
+<p>这篇论文的方法非常轻量，<strong>它完全没有引入庞大的额外辅助网络，也没有设计复杂的数据增强流程</strong>，而是纯粹在**输出端（Output Representation）**的后处理上做文章，具体分为两步：</p>
+<ol>
+<li>
+<p><strong>将离散输出转化为概率分布 (Distribution Transformation)：</strong> 作者将原本预测出的单一深度值，转换成一个服从正态分布的“概率云”。距离相机越远的物体，其对应的正态分布的标准差（方差）就越大，以此来数学化地表达“距离越远越测不准”的物理直觉。 2.</p>
+</li>
+<li>
+<p><strong>基于分布的密集采样 (Sampling Mechanism)：</strong> 在得到这个空间概率分布后，模型不再只输出那唯一的预测框。相反，它会沿着深度方向，根据概率分布进行多次采样，生成一系列附带不同置信度（Confidence-aware）的候选预测框。这就好比撒网，用多个带有概率的假设去覆盖真实的物体位置。</p>
+</li>
+</ol>
+<hr>
+<h2 id="3-实验与启发-experiments--takeaways">3. 实验与启发 (Experiments &amp; Takeaways)</h2>
+<p><em>(在 KITTI 上涨点了多少？对我自己的研究有什么可借鉴的？)</em></p>
+<p>效果极度显著。作者将这一输出表示方法作为“即插即用”的模块套用在 12 个单目3D探测器上，在推理耗时增加极小的情况下，使得它们的平均精度（AP）持续且稳定地获得了<strong>约 20% 的相对提升</strong>。</p>
+<p><strong>研究借鉴意义 (Takeaways)：</strong></p>
+<ol>
+<li>
+<p><strong>不确定性建模 (Uncertainty Modeling) 是个绝佳的切入点：</strong> 在单目这种先天缺乏深度信息的任务中，不要强求模型输出绝对精准的回归值。学会让模型预测出“它的不确定度（方差）”，并利用这种不确定度来指导生成更多的假设或参与 Loss 的加权，是一种非常有价值的研究思路。</p>
+</li>
+<li>
+<p><strong>警惕“数值技巧 (Numerical Trick)”与评测机制的博弈：</strong> 严格来说，这篇论文更像是一个极其聪明的数值技巧。它利用了多点采样来“暴力覆盖”真实框，从而在 KITTI 的 AP 计算规则下大幅提高了 Recall 从而刷高分数。在后续的研究中，这种思路可以借鉴作为提分手段，但在写 Motivation 时，必须要自圆其说（例如解释清楚这些大量重叠的候选框在自动驾驶真实的下游 Tracking 模块中该如何被过滤和使用），否则容易受到 Reviewer 的质疑。</p>
+</li>
+</ol>
+<hr>
+<p><em><figure><img src="/posts/digging-into-output-representation-for-monocular-3d-object-detection/result.jpg" width="90%"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+</em></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-13</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/digging-into-output-representation-for-monocular-3d-object-detection/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION" data-hashtags="一对多,深度采样,后处理"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-hashtag="一对多"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a3334%2fposts%2fdigging-into-output-representation-for-monocular-3d-object-detection%2f&amp;text=DIGGING%20INTO%20OUTPUT%20REPRESENTATION%20FOR%20MONOCULAR%203D%20OBJECT%20DETECTION" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/%E4%B8%80%E5%AF%B9%E5%A4%9A/">一对多</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E9%87%87%E6%A0%B7/">深度采样</a>,&nbsp;<a href="/tags/%E5%90%8E%E5%A4%84%E7%90%86/">后处理</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" class="prev" rel="prev" title="MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models"><i class="fas fa-angle-left" aria-hidden="true"></i>MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models</a>
+            <a href="/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" class="next" rel="next" title="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection">SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/lightgallery/lightgallery.min.js"></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/katex/katex.min.js"></script><script src="/lib/katex/contrib/auto-render.min.js"></script><script src="/lib/katex/contrib/copy-tex.min.js"></script><script src="/lib/katex/contrib/mhchem.min.js"></script><script src="/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.js"></script></body>
+</html>

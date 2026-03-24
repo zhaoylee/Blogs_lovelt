@@ -1,0 +1,27 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>多深度集成 - 标签 - Zhaoylee&#39;s Blogs</title>
+        <link>http://localhost:3334/tags/%E5%A4%9A%E6%B7%B1%E5%BA%A6%E9%9B%86%E6%88%90/</link>
+        <description>多深度集成 - 标签 - Zhaoylee&#39;s Blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 12 Mar 2026 10:25:13 &#43;0800</lastBuildDate><atom:link href="http://localhost:3334/tags/%E5%A4%9A%E6%B7%B1%E5%BA%A6%E9%9B%86%E6%88%90/" rel="self" type="application/rss+xml" /><item>
+    <title>MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models</title>
+    <link>http://localhost:3334/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/</link>
+    <pubDate>Thu, 12 Mar 2026 10:25:13 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/cover.jpg" referrerpolicy="no-referrer">
+            </div><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：ICRA<br>
+<strong>📅 发表年份</strong>：2025<br>
+<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">GitHub 链接</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/abs/2503.13743" target="_blank" rel="noopener noreffer ">MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models</a></p>
+</blockquote>
+<hr>
+<h2 id="0-一句话总结-tldr">0. 一句话总结 (TL;DR)</h2>
+<p><em>(这篇论文用什么方法，解决了什么问题，达到了什么效果)</em><br>
+MonoCT 提出了一种基于<strong>一致性教师模型（Consistent Teacher）的</strong>半监督自适应框架，通过在目标域（Target Domain）引入伪标签一致性约束，有效解决了单目 3D 检测在不同数据集间迁移时的深度估计偏差问题。</p>]]></description>
+</item>
+</channel>
+</rss>

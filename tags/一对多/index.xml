@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>一对多 - 标签 - Zhaoylee&#39;s Blogs</title>
+        <link>http://localhost:3334/tags/%E4%B8%80%E5%AF%B9%E5%A4%9A/</link>
+        <description>一对多 - 标签 - Zhaoylee&#39;s Blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 13 Mar 2026 15:27:43 &#43;0800</lastBuildDate><atom:link href="http://localhost:3334/tags/%E4%B8%80%E5%AF%B9%E5%A4%9A/" rel="self" type="application/rss+xml" /><item>
+    <title>DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION</title>
+    <link>http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/</link>
+    <pubDate>Fri, 13 Mar 2026 15:27:43 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/digging-into-output-representation-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：ICLR<br>
+<strong>📅 发表年份</strong>：2022<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/Owen-Liuyuxuan/visualDet3D/releases/tag/1.1.1" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openreview.net/pdf?id=mPlm356yMIP" target="_blank" rel="noopener noreffer ">DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION</a></p>
+</blockquote>
+<hr>
+<h2 id="0-一句话总结-tldr">0. 一句话总结 (TL;DR)</h2>
+<p><em>(这篇论文用什么方法，解决了什么问题，达到了什么效果)</em></p>]]></description>
+</item>
+</channel>
+</rss>

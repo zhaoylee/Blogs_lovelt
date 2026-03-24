@@ -1,0 +1,26 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>查询去噪 - 标签 - Zhaoylee&#39;s Blogs</title>
+        <link>http://localhost:3334/tags/%E6%9F%A5%E8%AF%A2%E5%8E%BB%E5%99%AA/</link>
+        <description>查询去噪 - 标签 - Zhaoylee&#39;s Blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 20:52:49 &#43;0800</lastBuildDate><atom:link href="http://localhost:3334/tags/%E6%9F%A5%E8%AF%A2%E5%8E%BB%E5%99%AA/" rel="self" type="application/rss+xml" /><item>
+    <title>Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</title>
+    <link>http://localhost:3334/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 20:52:49 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：AAAI <br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/lsy010857/MonoDLGD" target="_blank" rel="noopener noreffer ">MonoDLGD</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2511.13195" target="_blank" rel="noopener noreffer ">Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 在基于 Transformer 的单目 3D 目标检测中，通过向真实标签注入噪声并让模型去重构（即查询去噪 Query Denoising），能有效加速模型收敛并提升几何感知能力。</p>]]></description>
+</item>
+</channel>
+</rss>

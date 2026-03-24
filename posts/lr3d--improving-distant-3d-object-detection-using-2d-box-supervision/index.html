@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3334&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision">
+  <meta property="og:description" content="🏛️ 会议/期刊：CVPR
+📅 发表年份：2024
+💻 开源代码：无
+📄 论文题目：Improving Distant 3D Object Detection Using 2D Box Supervision
+这篇由 NVIDIA 等机构的研究人员发表在 CVPR 2024 的重磅论文 《Improving Distant 3D Object Detection Using 2D Box Supervision》(简称 LR3D)，切入了一个目前高阶自动驾驶极其头疼的落地难题：远距离感知（Long-Range Detection）。它展示了如何用最廉价的标注，榨取单目视觉在远距离上的极限潜力。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-15T22:23:00+08:00">
+    <meta property="article:modified_time" content="2026-03-15T22:23:00+08:00">
+    <meta property="article:tag" content="长距离感知">
+    <meta property="article:tag" content="隐式投影">
+    <meta property="og:image" content="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/cover.jpg">
+  <meta name="twitter:title" content="LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：CVPR
+📅 发表年份：2024
+💻 开源代码：无
+📄 论文题目：Improving Distant 3D Object Detection Using 2D Box Supervision
+这篇由 NVIDIA 等机构的研究人员发表在 CVPR 2024 的重磅论文 《Improving Distant 3D Object Detection Using 2D Box Supervision》(简称 LR3D)，切入了一个目前高阶自动驾驶极其头疼的落地难题：远距离感知（Long-Range Detection）。它展示了如何用最廉价的标注，榨取单目视觉在远距离上的极限潜力。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" /><link rel="prev" href="http://localhost:3334/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" /><link rel="next" href="http://localhost:3334/posts/ocm3d--object-centric-monocular-3d-object-detection/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:3334\/posts\/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision\/"
+        },"genre": "posts","keywords": "长距离感知, 隐式投影","wordcount":  2109 ,
+        "url": "http:\/\/localhost:3334\/posts\/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision\/","datePublished": "2026-03-15T22:23:00+08:00","dateModified": "2026-03-15T22:23:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/avatar256.png"
+        data-srcset="/images/avatar256.png, /images/avatar256.png 1.5x, /images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/images/avatar256.png"
+        title="/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 主页 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/avatar256.png"
+        data-srcset="/images/avatar256.png, /images/avatar256.png 1.5x, /images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/images/avatar256.png"
+        title="/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="">主页</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/centernet-based/"><i class="far fa-folder" aria-hidden="true"></i>CenterNet-Based</a>&nbsp;<a href="/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/"><i class="far fa-folder" aria-hidden="true"></i>即插即用型</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-15">2026-03-15</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 2109 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</a></li>
+        <li><a href="#二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</a>
+          <ul>
+            <li><a href="#1-核心方法lr3d-框架-近端学习远端推断">1. 核心方法：LR3D 框架 (近端学习，远端推断)</a></li>
+            <li><a href="#2-关键数据与主要发现">2. 关键数据与主要发现</a></li>
+            <li><a href="#3-结论">3. 结论</a></li>
+          </ul>
+        </li>
+        <li><a href="#三-新颖概念通俗解释">三、 新颖概念通俗解释</a></li>
+        <li><a href="#四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR<br>
+<strong>📅 发表年份</strong>：2024<br>
+<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">无</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Yang_Improving_Distant_3D_Object_Detection_Using_2D_Box_Supervision_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreffer ">Improving Distant 3D Object Detection Using 2D Box Supervision</a></p>
+</blockquote>
+<hr>
+<p>这篇由 NVIDIA 等机构的研究人员发表在 CVPR 2024 的重磅论文 <strong>《Improving Distant 3D Object Detection Using 2D Box Supervision》(简称 LR3D)</strong>，切入了一个目前高阶自动驾驶极其头疼的落地难题：<strong>远距离感知（Long-Range Detection）</strong>。它展示了如何用最廉价的标注，榨取单目视觉在远距离上的极限潜力。</p>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 在自动驾驶的 3D 数据集中（如 KITTI、nuScenes），3D 边界框的标注高度依赖激光雷达（LiDAR）的精确测距。然而，雷达点云在远距离（例如 40 米、100 米外）会变得极其稀疏，导致人工根本无法为这些远处的物体标注准确的 3D 框。</p>
+</li>
+<li>
+<p><strong>核心问题（痛点）：</strong> 因为训练数据中缺乏远距离的 3D 标注，现有的单目 3D 目标检测模型在面对远距离目标时，性能会出现断崖式下跌。但是，<strong>远处的物体虽然没有 3D 雷达点，但在高分辨率的 2D 相机图像上依然清晰可见，人工画一个 2D 框非常容易</strong>。</p>
+</li>
+<li>
+<p><strong>研究目的：</strong> 旨在提出 LR3D 框架，让模型在<strong>仅有远距离 2D 框监督</strong>（没有远距离 3D 标注）的情况下，依然能精准估算出极远距离（超过 200 米）目标的 3D 属性。</p>
+</li>
+</ul>
+<hr>
+<figure><img src="/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/main.jpg" width="100%"><figcaption>
+      <h4>整体框架图</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</h3>
+<h4 id="1-核心方法lr3d-框架-近端学习远端推断">1. 核心方法：LR3D 框架 (近端学习，远端推断)</h4>
+<p>作者设计的这套框架极其巧妙，核心在于“经验的跨距离迁移”：</p>
+<ul>
+<li>
+<p><strong>隐式投影头 (Implicit Projection Head, IP-Head)：</strong> 在模型训练的近距离区域（例如 40 米以内），同时存在准确的 2D 框和 3D 标签。IP-Head 会在这里疯狂学习一种映射规律：<strong>特定的 2D 边界框尺寸，究竟对应着多远的 3D 深度</strong>。当它把这种“2D-3D 隐式映射”学透之后，面对 40 米外的目标，只需输入廉价的 2D 框，它就能直接推算出深度的概率分布。</p>
+</li>
+<li>
+<p><strong>投影增强策略 (Projection Augmentation)：</strong> 为了防止模型在面对没见过的 2D 尺寸时崩溃，作者在训练时进行了数据增强。通过随机改变近距离目标的深度值，并利用相机内参反向计算出它对应的虚拟 2D 框，从而人为合成了海量的“2D框-深度”数据对，极大增强了 IP-Head 映射的鲁棒性。</p>
+</li>
+</ul>
+<h4 id="2-关键数据与主要发现">2. 关键数据与主要发现</h4>
+<ul>
+<li>
+<p><strong>惊人的“无中生有”能力：</strong> 作者在实验中做了一个极端的测试：把数据集中 40 米以外的所有 3D 标注全部删掉，只保留 2D 标注。结果表明，搭载了 LR3D 的基线模型（如 FCOS3D），居然成功检测出了 <strong>200 米开外</strong> 的物体，且精度甚至媲美使用了全量 3D 标注（Full 3D Supervision）训练的模型。</p>
+</li>
+<li>
+<p><strong>通用插件：</strong> 该框架不仅适用于纯单目检测，还能无缝接入多视角（Multi-view）3D 检测网络中。</p>
+</li>
+</ul>
+<h4 id="3-结论">3. 结论</h4>
+<p>论文强有力地证明：对于单目 3D 检测而言，昂贵的远距离 3D 雷达标注并非不可或缺。只要充分利用近距离的 3D 监督建立隐式的透视映射，再辅以远距离廉价的 2D 框进行监督，就能以极低的成本解决长尾的远距离感知痛点。</p>
+<hr>
+<h3 id="三-新颖概念通俗解释">三、 新颖概念通俗解释</h3>
+<ul>
+<li>
+<p><strong>隐式投影头 (IP-Head)：</strong> 可以把它理解为老司机的“肌肉记忆”。一个经验丰富的司机在高速上开车，他不需要激光雷达，只要看一眼前车在挡风玻璃里占了多大面积（2D 框大小），就能立刻判断出前车离自己是 50 米还是 150 米（推算 3D 深度）。IP-Head 就是在用神经网络模拟人类这种“近大远小”的透视经验，建立从 2D 尺寸直达 3D 深度的捷径。</p>
+</li>
+<li>
+<p><strong>2D 框监督 (2D Box Supervision)：</strong> 普通的 3D 模型遇到远处没标 3D 框的车，会直接当作背景忽略掉（导致漏检）。而 2D 框监督则是告诉模型：“虽然我不知道这辆车在 3D 空间里的确切深度，但我确定在这个 2D 像素框里有一辆车，你必须根据你的透视经验，给我把它在 3D 空间里的位置猜出来。”这种监督提供了一个极强的防漏检下限。</p>
+</li>
+</ul>
+<hr>
+<h3 id="四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</h3>
+<p><strong>优点：</strong></p>
+<ol>
+<li>
+<p><strong>直击落地痛点，极具商业价值：</strong> 彻底打破了高阶辅助驾驶中“远距离感知必须依赖昂贵高线束雷达标注”的迷信，极大地降低了数据闭环的成本。</p>
+</li>
+<li>
+<p><strong>优雅的数学与物理直觉：</strong> 将复杂的透视几何问题转化为数据驱动的隐式分布学习，且训练策略（投影增强）逻辑严密。</p>
+</li>
+</ol>
+<p><strong>缺点与局限性：</strong></p>
+<ol>
+<li>
+<p><strong>极度脆弱的“错觉”：</strong> 由于深度完全依赖于 2D 框的尺寸，如果一辆近处的车被旁边的树木遮挡了一大半，导致目标检测器给出的 2D 框特别小，IP-Head 就会产生严重的错觉，误以为这是一辆在 200 米外的车。</p>
+</li>
+<li>
+<p><strong>缺乏全局场景意识：</strong> IP-Head 的映射仅仅发生在单个物体的独立计算分支中，完全没有考虑到路面起伏或其他车辆的空间参照关系。</p>
+</li>
+</ol>
+<p><strong>极具潜力的后续研究方向（破局点）：</strong></p>
+<p>基于上述遮挡引发的“深度错觉”问题，后续在架构设计上有两个极其明确的突围方向：</p>
+<ol>
+<li>
+<p><strong>结合多粒度特征恢复 (Multi-Granularity Feature Restoration)：</strong> 针对因截断或遮挡导致的 2D 边界框尺寸畸变，亟需在将特征送入 IP-Head 之前引入多粒度修复机制。通过提取周围的语义线索，先在特征维度上将被遮挡的车辆轮廓“脑补”完整，再基于修复后的完整多粒度特征去推算深度，就能彻底打破远距离遮挡带来的深度预测崩溃。</p>
+</li>
+<li>
+<p><strong>引入场景拓扑正则化 (Scene Topological Regularization)：</strong> 孤立的隐式投影是盲目的。在长距离预测中，必须将单个物体的深度预测纳入全局场景的拓扑网络中。通过加入“远距离车辆必须依附于延伸的道路地平面”以及“视觉上重叠的 2D 框必须满足 3D 遮挡的深度排序”等场景拓扑正则化约束，可以强行利用宏观物理法则纠正 IP-Head 产生的离谱偏移。</p>
+</li>
+</ol>
+<hr>
+<figure><img src="/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/result.jpg" width="90%"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<p>到此结束</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" data-title="LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision" data-hashtags="长距离感知,隐式投影"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" data-title="LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" data-hashtag="长距离感知"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" data-title="LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" data-title="LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" data-title="LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" data-title="LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a3334%2fposts%2flr3d--improving-distant-3d-object-detection-using-2d-box-supervision%2f&amp;text=LR3D%3a%20Improving%20Distant%203D%20Object%20Detection%20Using%202D%20Box%20Supervision" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/%E9%95%BF%E8%B7%9D%E7%A6%BB%E6%84%9F%E7%9F%A5/">长距离感知</a>,&nbsp;<a href="/tags/%E9%9A%90%E5%BC%8F%E6%8A%95%E5%BD%B1/">隐式投影</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" class="prev" rel="prev" title="StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors"><i class="fas fa-angle-left" aria-hidden="true"></i>StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</a>
+            <a href="/posts/ocm3d--object-centric-monocular-3d-object-detection/" class="next" rel="next" title="OCM3D: Object-Centric Monocular 3D Object Detection">OCM3D: Object-Centric Monocular 3D Object Detection<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/lightgallery/lightgallery.min.js"></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/katex/katex.min.js"></script><script src="/lib/katex/contrib/auto-render.min.js"></script><script src="/lib/katex/contrib/copy-tex.min.js"></script><script src="/lib/katex/contrib/mhchem.min.js"></script><script src="/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.js"></script></body>
+</html>

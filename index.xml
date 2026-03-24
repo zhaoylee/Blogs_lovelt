@@ -1,0 +1,179 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Zhaoylee&#39;s Blogs</title>
+        <link>http://localhost:3334/</link>
+        <description>This is my cool site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Mar 2026 10:48:33 &#43;0800</lastBuildDate>
+            <atom:link href="http://localhost:3334/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection</title>
+    <link>http://localhost:3334/posts/new_post/</link>
+    <pubDate>Tue, 24 Mar 2026 10:48:33 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/new_post/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/cover.jpg" referrerpolicy="no-referrer">
+            </div>简述:一个框对应多个物体位置，通过施加软标签，帮助网络训练稳定，从而提升一定的性能;]]></description>
+</item>
+<item>
+    <title>OCM3D: Object-Centric Monocular 3D Object Detection</title>
+    <link>http://localhost:3334/posts/ocm3d--object-centric-monocular-3d-object-detection/</link>
+    <pubDate>Mon, 16 Mar 2026 09:12:18 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/ocm3d--object-centric-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：arxiv<br>
+<strong>📅 发表年份</strong>：2021<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/mrsempress/OBMO_GUPNet/blob/main/tools/offline_OBMO.py" target="_blank" rel="noopener noreffer ">OBMO_GUPNet</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2104.06041" target="_blank" rel="noopener noreffer ">OCM3D: Object-Centric Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="1-文献背景研究目的与核心问题">1. 文献背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景</strong>：单目 3D 目标检测（Monocular 3D Object Detection）是一个高度病态（ill-posed）的问题。主流方法通常依赖纯图像或将其转化为伪激光雷达（Pseudo-LiDAR）点云。然而，前者难以捕捉像素间的 3D 空间几何关系，后者则受困于单目深度估计带来的巨大点云噪声。</p>]]></description>
+</item>
+<item>
+    <title>LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision</title>
+    <link>http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/</link>
+    <pubDate>Sun, 15 Mar 2026 22:23:00 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR<br>
+<strong>📅 发表年份</strong>：2024<br>
+<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">无</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Yang_Improving_Distant_3D_Object_Detection_Using_2D_Box_Supervision_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreffer ">Improving Distant 3D Object Detection Using 2D Box Supervision</a></p>
+</blockquote>
+<hr>
+<p>这篇由 NVIDIA 等机构的研究人员发表在 CVPR 2024 的重磅论文 <strong>《Improving Distant 3D Object Detection Using 2D Box Supervision》(简称 LR3D)</strong>，切入了一个目前高阶自动驾驶极其头疼的落地难题：<strong>远距离感知（Long-Range Detection）</strong>。它展示了如何用最廉价的标注，榨取单目视觉在远距离上的极限潜力。</p>]]></description>
+</item>
+<item>
+    <title>StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</title>
+    <link>http://localhost:3334/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/</link>
+    <pubDate>Sun, 15 Mar 2026 21:59:16 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR<br>
+<strong>📅 发表年份</strong>：2024<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/nullmax-vision/QAF2D" target="_blank" rel="noopener noreffer ">nullmax-vision/QAF2D-CVPR 2024</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2403.06093" target="_blank" rel="noopener noreffer ">Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</a></p>
+</blockquote>
+<hr>
+<p>这篇发表于 CVPR 2024 的论文 <strong>《Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors》(简称 QAF2D)</strong> 极具工程实用价值。它没有死磕 3D 空间中的特征提取瓶颈，而是打出了一套极其聪明的“降维组合拳”，巧妙地利用成熟的 2D 视觉技术来为 3D 检测器“引路”。</p>]]></description>
+</item>
+<item>
+    <title>OBMO: One Bounding Box Multiple Objects
+for Monocular 3D Object Detection</title>
+    <link>http://localhost:3334/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 21:59:12 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：IEEE TIP<br>
+<strong>📅 发表年份</strong>：2023<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/mrsempress/OBMO_patchnet" target="_blank" rel="noopener noreffer ">mrsempress/OBMO_patchnet</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2212.10049" target="_blank" rel="noopener noreffer ">OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<p>这篇发表于 IEEE TIP (2023) 的经典论文 <strong>《OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection》</strong> 切入点非常犀利。它没有在复杂的网络主干上做文章，而是直击单目 3D 目标检测在“底层数学物理逻辑”上的痛点，提出了一种极其优雅的“即插即用（Plug-and-play）”训练策略。</p>]]></description>
+</item>
+<item>
+    <title>Open Vocabulary Monocular 3D Object Detection</title>
+    <link>http://localhost:3334/posts/open-vocabulary-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 21:14:37 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/open-vocabulary-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：3DV<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/UVA-Computer-Vision-Lab/ovmono3d" target="_blank" rel="noopener noreffer ">UVA-Computer-Vision-Lab/ovmono3d</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2411.16833" target="_blank" rel="noopener noreffer ">Open Vocabulary Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 传统的单目 3D 目标检测（M3OD）模型都属于“闭集（Closed-set）”学习。这意味着模型只能检测训练集中预先定义好的那几种类别（例如 KITTI 数据集里的车、人、自行车）。但在真实的自动驾驶或机器人场景中，会遇到无数的长尾目标（如遗落的轮胎、奇形怪状的施工路障、甚至是一只突然窜出的动物）。</p>]]></description>
+</item>
+<item>
+    <title>MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver</title>
+    <link>http://localhost:3334/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/</link>
+    <pubDate>Sun, 15 Mar 2026 21:14:36 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：ICCV<br>
+<strong>📅 发表年份</strong>：2023<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/Xianpeng919/monoxiver" target="_blank" rel="noopener noreffer ">Xianpeng919/monoxiver (ICCV'23)</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Liu_Monocular_3D_Object_Detection_with_Bounding_Box_Denoising_in_3D_ICCV_2023_paper.pdf" target="_blank" rel="noopener noreffer ">Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver</a></p>
+</blockquote>
+<hr>
+<p>这篇发表于 ICCV 2023 的论文 <strong>《Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver》(简称 MonoXiver)</strong>，提供了一个非常经典且极具工程价值的“自上而下（Top-down）”纠错思路。它并没有试图发明一种全新的主干网络，而是设计了一个强大的“插件”，专门用来拯救那些定位不准的预测框。</p>]]></description>
+</item>
+<item>
+    <title>PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection</title>
+    <link>http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 20:52:51 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：ICLR<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">无</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openreview.net/pdf?id=3knS4J9isg" target="_blank" rel="noopener noreffer ">PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 单目 3D 目标检测模型极度“吃数据”。然而，人工标注 3D 边界框极其昂贵且耗时，导致目前带 3D 标签的数据集规模很小，严重限制了模型的泛化能力。</p>]]></description>
+</item>
+<item>
+    <title>Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</title>
+    <link>http://localhost:3334/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 20:52:49 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：AAAI <br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/lsy010857/MonoDLGD" target="_blank" rel="noopener noreffer ">MonoDLGD</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2511.13195" target="_blank" rel="noopener noreffer ">Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 在基于 Transformer 的单目 3D 目标检测中，通过向真实标签注入噪声并让模型去重构（即查询去噪 Query Denoising），能有效加速模型收敛并提升几何感知能力。</p>]]></description>
+</item>
+<item>
+    <title>Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising</title>
+    <link>http://localhost:3334/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/</link>
+    <pubDate>Sun, 15 Mar 2026 20:36:42 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR / ICCV / ECCV<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>： 无<br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2601.01036" target="_blank" rel="noopener noreffer ">Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 近年来，基于 Transformer（特别是 DETR 架构）的模型在 2D 目标检测中取得了巨大成功，并顺理成章地被引入到单目 3D 目标检测（M3OD）领域。这类模型依赖“查询（Query）”机制和“二分图匹配（Bipartite Matching）”来端到端地输出检测结果，无需繁琐的非极大值抑制（NMS）。</p>]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>2D引导3D - 标签 - Zhaoylee&#39;s Blogs</title>
+        <link>http://localhost:3334/tags/2d%E5%BC%95%E5%AF%BC3d/</link>
+        <description>2D引导3D - 标签 - Zhaoylee&#39;s Blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 21:59:16 &#43;0800</lastBuildDate><atom:link href="http://localhost:3334/tags/2d%E5%BC%95%E5%AF%BC3d/" rel="self" type="application/rss+xml" /><item>
+    <title>StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</title>
+    <link>http://localhost:3334/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/</link>
+    <pubDate>Sun, 15 Mar 2026 21:59:16 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:3334/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR<br>
+<strong>📅 发表年份</strong>：2024<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/nullmax-vision/QAF2D" target="_blank" rel="noopener noreffer ">nullmax-vision/QAF2D-CVPR 2024</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2403.06093" target="_blank" rel="noopener noreffer ">Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</a></p>
+</blockquote>
+<hr>
+<p>这篇发表于 CVPR 2024 的论文 <strong>《Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors》(简称 QAF2D)</strong> 极具工程实用价值。它没有死磕 3D 空间中的特征提取瓶颈，而是打出了一套极其聪明的“降维组合拳”，巧妙地利用成熟的 2D 视觉技术来为 3D 检测器“引路”。</p>]]></description>
+</item>
+</channel>
+</rss>
