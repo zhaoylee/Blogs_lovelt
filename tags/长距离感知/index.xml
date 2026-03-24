@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>长距离感知 on Zhaoylee&#39;s Blogs</title>
-    <link>https://zhaoylee.github.io/Blogs_lovelt/tags/%E9%95%BF%E8%B7%9D%E7%A6%BB%E6%84%9F%E7%9F%A5/</link>
-    <description>Recent content in 长距离感知 on Zhaoylee&#39;s Blogs</description>
-    <generator>Hugo</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Sun, 15 Mar 2026 22:23:00 +0800</lastBuildDate>
-    <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E9%95%BF%E8%B7%9D%E7%A6%BB%E6%84%9F%E7%9F%A5/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision</title>
-      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/</link>
-      <pubDate>Sun, 15 Mar 2026 22:23:00 +0800</pubDate>
-      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：CVPR&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2024&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;%E5%A1%AB%E5%86%99%E4%BD%A0%E7%9A%84URL&#34;&gt;无&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://openaccess.thecvf.com/content/CVPR2024/papers/Yang_Improving_Distant_3D_Object_Detection_Using_2D_Box_Supervision_CVPR_2024_paper.pdf&#34;&gt;Improving Distant 3D Object Detection Using 2D Box Supervision&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;这篇由 NVIDIA 等机构的研究人员发表在 CVPR 2024 的重磅论文 &lt;strong&gt;《Improving Distant 3D Object Detection Using 2D Box Supervision》(简称 LR3D)&lt;/strong&gt;，切入了一个目前高阶自动驾驶极其头疼的落地难题：&lt;strong&gt;远距离感知（Long-Range Detection）&lt;/strong&gt;。它展示了如何用最廉价的标注，榨取单目视觉在远距离上的极限潜力。&lt;/p&gt;</description>
-    </item>
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>长距离感知 - 标签 - Zhaoylee&#39;s Blogs</title>
+        <link>http://localhost:1683/Blogs_lovelt/tags/%E9%95%BF%E8%B7%9D%E7%A6%BB%E6%84%9F%E7%9F%A5/</link>
+        <description>长距离感知 - 标签 - Zhaoylee&#39;s Blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 22:23:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1683/Blogs_lovelt/tags/%E9%95%BF%E8%B7%9D%E7%A6%BB%E6%84%9F%E7%9F%A5/" rel="self" type="application/rss+xml" /><item>
+    <title>LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision</title>
+    <link>http://localhost:1683/Blogs_lovelt/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/</link>
+    <pubDate>Sun, 15 Mar 2026 22:23:00 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:1683/Blogs_lovelt/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR<br>
+<strong>📅 发表年份</strong>：2024<br>
+<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">无</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Yang_Improving_Distant_3D_Object_Detection_Using_2D_Box_Supervision_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreffer ">Improving Distant 3D Object Detection Using 2D Box Supervision</a></p>
+</blockquote>
+<hr>
+<p>这篇由 NVIDIA 等机构的研究人员发表在 CVPR 2024 的重磅论文 <strong>《Improving Distant 3D Object Detection Using 2D Box Supervision》(简称 LR3D)</strong>，切入了一个目前高阶自动驾驶极其头疼的落地难题：<strong>远距离感知（Long-Range Detection）</strong>。它展示了如何用最廉价的标注，榨取单目视觉在远距离上的极限潜力。</p>]]></description>
+</item>
+</channel>
 </rss>

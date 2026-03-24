@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/Blogs_lovelt/livereload.js?mindelay=10&amp;v=2&amp;port=1683&amp;path=Blogs_lovelt/livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection">
+  <meta property="og:description" content="🏛️ 会议/期刊：AAAI 📅 发表年份：2026
+💻 开源代码：MonoDLGD
+📄 论文题目：Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection
+一、 背景、研究目的与核心问题 研究背景： 在基于 Transformer 的单目 3D 目标检测中，通过向真实标签注入噪声并让模型去重构（即查询去噪 Query Denoising），能有效加速模型收敛并提升几何感知能力。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-15T20:52:49+08:00">
+    <meta property="article:modified_time" content="2026-03-15T20:52:49+08:00">
+    <meta property="article:tag" content="查询去噪">
+    <meta property="og:image" content="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/cover.jpg">
+  <meta name="twitter:title" content="Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：AAAI 📅 发表年份：2026
+💻 开源代码：MonoDLGD
+📄 论文题目：Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection
+一、 背景、研究目的与核心问题 研究背景： 在基于 Transformer 的单目 3D 目标检测中，通过向真实标签注入噪声并让模型去重构（即查询去噪 Query Denoising），能有效加速模型收敛并提升几何感知能力。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" /><link rel="prev" href="http://localhost:1683/Blogs_lovelt/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/" /><link rel="next" href="http://localhost:1683/Blogs_lovelt/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" /><link rel="stylesheet" href="/Blogs_lovelt/css/style.min.css"><link rel="preload" href="/Blogs_lovelt/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/Blogs_lovelt/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/Blogs_lovelt/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/Blogs_lovelt/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1683\/Blogs_lovelt\/posts\/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection\/"
+        },"genre": "posts","keywords": "查询去噪","wordcount":  2008 ,
+        "url": "http:\/\/localhost:1683\/Blogs_lovelt\/posts\/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection\/","datePublished": "2026-03-15T20:52:49+08:00","dateModified": "2026-03-15T20:52:49+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/Blogs_lovelt/"> 主页 </a><a class="menu-item" href="/Blogs_lovelt/categories/"> 分类 </a><a class="menu-item" href="/Blogs_lovelt/tags/"> 标签 </a><a class="menu-item" href="/Blogs_lovelt/posts/"> 文章 </a><a class="menu-item" href="/Blogs_lovelt/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/Blogs_lovelt/" title="">主页</a><a class="menu-item" href="/Blogs_lovelt/categories/" title="">分类</a><a class="menu-item" href="/Blogs_lovelt/tags/" title="">标签</a><a class="menu-item" href="/Blogs_lovelt/posts/" title="">文章</a><a class="menu-item" href="/Blogs_lovelt/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/Blogs_lovelt/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/Blogs_lovelt/categories/transformer-based/"><i class="far fa-folder" aria-hidden="true"></i>Transformer-Based</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-15">2026-03-15</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 2008 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</a></li>
+        <li><a href="#二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</a>
+          <ul>
+            <li><a href="#1-核心方法monodlgd-框架">1. 核心方法：MonoDLGD 框架</a></li>
+            <li><a href="#2-关键数据与主要发现">2. 关键数据与主要发现</a></li>
+            <li><a href="#3-结论">3. 结论</a></li>
+          </ul>
+        </li>
+        <li><a href="#三-新颖概念通俗解释">三、 新颖概念通俗解释</a></li>
+        <li><a href="#四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：AAAI <br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/lsy010857/MonoDLGD" target="_blank" rel="noopener noreffer ">MonoDLGD</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2511.13195" target="_blank" rel="noopener noreffer ">Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 在基于 Transformer 的单目 3D 目标检测中，通过向真实标签注入噪声并让模型去重构（即查询去噪 Query Denoising），能有效加速模型收敛并提升几何感知能力。</p>
+</li>
+<li>
+<p><strong>研究目的：</strong> 旨在提出一种动态、自适应的去噪框架，通过显式的几何监督和对样本难度的精准把控，提升模型应对复杂驾驶场景的鲁棒性。</p>
+</li>
+<li>
+<p><strong>核心问题（痛点）：</strong> 现有的去噪方法非常粗暴，它们对所有真实标签施加<strong>同等强度</strong>的随机扰动。然而，在实际道路上，不同物体的检测难度天差地别（近处完整的车很容易，远处被严重遮挡、截断的车极难）。如果对“Hard”样本也施加强烈的噪声扰动，模型原本就微弱的特征会被彻底摧毁，导致训练崩溃；反之，如果噪声太弱，对“Easy”样本又起不到施压和抗干扰训练的效果。</p>
+</li>
+</ul>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/main.jpg" width="100%"><figcaption>
+      <h4>整体框架图</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</h3>
+<h4 id="1-核心方法monodlgd-框架">1. 核心方法：MonoDLGD 框架</h4>
+<p>为了解决“一刀切”的痛点，作者设计了两个关键组件：</p>
+<ul>
+<li>
+<p><strong>标签引导的去噪与几何重构 (Label-Guided Denoising)：</strong> 在训练时，系统会故意扰动带有丰富 3D 信息的真实标签（如投影的 2D 框、深度值），并强制模型通过一个共享解码器将它们还原。这为模型提供了极强的<strong>显式几何监督</strong>，逼迫它深刻理解 2D 像素与 3D 空间的关系。</p>
+</li>
+<li>
+<p><strong>难度感知扰动机制 (Difficulty-Aware Perturbation, DAP)：</strong> 这是整篇论文的灵魂。DAP 能够基于实例级别的“预测不确定性”来动态调节加噪的强度。其核心策略是：<strong>遇强则强，遇弱则弱</strong>。对于容易检测的实例，施加大规模扰动以增强其泛化能力；对于遮挡或远距离等困难实例，则施加微小扰动，以保护其脆弱的特征线索不被破坏。</p>
+</li>
+</ul>
+<h4 id="2-关键数据与主要发现">2. 关键数据与主要发现</h4>
+<ul>
+<li>
+<p>在严苛的 KITTI 3D 目标检测基准测试中，MonoDLGD 表现惊艳。它不仅全面提升了检测精度，更重要的是，在衡量复杂场景的 Moderate 和 Hard 难度级别上，均达到了当前最先进（State-of-the-Art）的水平。</p>
+</li>
+<li>
+<p>消融实验强有力地证明：如果没有 DAP 机制，单纯加噪会导致困难样本的性能退化；只有当“难度感知”与“标签重构”结合时，模型才能在所有难度级别上实现正向收益。</p>
+</li>
+</ul>
+<h4 id="3-结论">3. 结论</h4>
+<p>研究表明，在单目 3D 检测的去噪训练中，将“预测不确定性（难度）”与“噪声强度”挂钩是打破性能瓶颈的关键。这种难度感知的几何监督机制，有效促进了模型学习到更具判别性的几何特征。</p>
+<figure><img src="/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/result.jpg" width="90%"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="三-新颖概念通俗解释">三、 新颖概念通俗解释</h3>
+<ul>
+<li>
+<p><strong>标签引导的去噪 (Label-Guided Denoising)：</strong> 传统的模型训练就像是开卷考试，直接看着图填 3D 框。标签引导去噪则是给模型安排了“魔鬼地狱周”：故意把正确答案（标签）揉皱、撕碎（加噪），然后让模型从一堆碎片中拼凑出完美的 3D 几何属性。这种极限施压极大提升了模型的“空间想象力”。</p>
+</li>
+<li>
+<p><strong>难度感知扰动 (Difficulty-Aware Perturbation)：</strong> 就像健身房里的私教给人安排配重。面对初学者（对应极难的遮挡样本），如果教练直接上 100 公斤（强噪声），初学者当场就被压垮了；但面对举重冠军（对应近处清晰样本），只给 10 公斤（弱噪声）又起不到训练效果。难度感知就是这个“聪明的教练”，它能精准评估每个样本的承受能力，动态分配最合适的训练强度。</p>
+</li>
+</ul>
+<hr>
+<h3 id="四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</h3>
+<p><strong>优点：</strong></p>
+<ol>
+<li>
+<p><strong>精准的切入点：</strong> 敏锐抓住了由于距离、截断和遮挡导致的“实例级难度不平衡”现象，逻辑自洽，极其契合自动驾驶的真实长尾场景。</p>
+</li>
+<li>
+<p><strong>极高的性价比：</strong> 与前一篇的变分去噪类似，MonoDLGD 的所有“戏份”都在训练阶段完成。在推理部署时，这些去噪分支会被直接丢弃，不增加任何额外的网络参数和推理延迟。</p>
+</li>
+</ol>
+<p><strong>缺点与局限性：</strong></p>
+<ol>
+<li>
+<p><strong>停留在数值维度的修补：</strong> MonoDLGD 仅对 1D/2D 的数值标签（如坐标、深度值）进行加噪和重构，但并没有在更深层次的视觉特征图（Feature Map）维度上去主动修复那些因物理遮挡而丢失的语义特征。</p>
+</li>
+<li>
+<p><strong>缺乏宏观的场景约束：</strong> 模型依然在“各自为战”，独立地对每个物体进行去噪重构，完全忽略了这些物体共处于同一个 3D 物理场景中。如果重构出来的汽车相互穿模，或者深度预测导致其悬浮在半空中，当前的孤立去噪机制是无法纠正的。</p>
+</li>
+</ol>
+<p><strong>极具潜力的后续研究方向（破局点）：</strong></p>
+<p>基于上述局限性，该领域接下来的突破口非常明确：</p>
+<ol>
+<li>
+<p><strong>多粒度特征恢复 (Multi-Granularity Feature Restoration)：</strong> 针对其局限于数值标签的短板，下一步亟需在特征提取阶段引入多粒度恢复机制。在进行坐标去噪之前，应当先在骨干网络（Backbone）或颈部（Neck）层级，将因遮挡导致的残缺特征进行从粗粒度（语义）到细粒度（几何）的逐层修复。只有底层特征足够丰满，上层的难度感知去噪才能发挥出最大威力。</p>
+</li>
+<li>
+<p><strong>场景拓扑正则化 (Scene Topological Regularization)：</strong> 为了克服个体孤立重构导致的物理不合理现象，必须引入场景级的全局约束。在去噪重构的优化目标中，加入诸如物体与地面（Ground Plane）的依附关系、物体之间相对深度的拓扑排序等正则化项。这样，模型不仅能看清“个体”，更能理解整个 3D 场景的宏观拓扑结构，从而彻底打破单目 3D 检测的性能天花板。</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" data-title="Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection" data-hashtags="查询去噪"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" data-title="Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" data-hashtag="查询去噪"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" data-title="Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" data-title="Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection"><i data-svg-src="/Blogs_lovelt/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" data-title="Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/" data-title="Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a1683%2fBlogs_lovelt%2fposts%2fmonodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection%2f&amp;text=Difficulty-Aware%20Label-Guided%20Denoising%20for%20Monocular%203D%20Object%20Detection" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/Blogs_lovelt/tags/%E6%9F%A5%E8%AF%A2%E5%8E%BB%E5%99%AA/">查询去噪</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/Blogs_lovelt/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/Blogs_lovelt/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/" class="prev" rel="prev" title="Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising"><i class="fas fa-angle-left" aria-hidden="true"></i>Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising</a>
+            <a href="/Blogs_lovelt/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" class="next" rel="next" title="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection">PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/Blogs_lovelt/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/Blogs_lovelt/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/Blogs_lovelt/lib/katex/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="/Blogs_lovelt/lib/autocomplete/autocomplete.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.zh.min.js"></script><script src="/Blogs_lovelt/lib/lazysizes/lazysizes.min.js"></script><script src="/Blogs_lovelt/lib/lightgallery/lightgallery.min.js"></script><script src="/Blogs_lovelt/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/Blogs_lovelt/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script src="/Blogs_lovelt/lib/clipboard/clipboard.min.js"></script><script src="/Blogs_lovelt/lib/sharer/sharer.min.js"></script><script src="/Blogs_lovelt/lib/katex/katex.min.js"></script><script src="/Blogs_lovelt/lib/katex/contrib/auto-render.min.js"></script><script src="/Blogs_lovelt/lib/katex/contrib/copy-tex.min.js"></script><script src="/Blogs_lovelt/lib/katex/contrib/mhchem.min.js"></script><script src="/Blogs_lovelt/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/Blogs_lovelt/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/Blogs_lovelt/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/Blogs_lovelt/js/theme.js"></script></body>
+</html>

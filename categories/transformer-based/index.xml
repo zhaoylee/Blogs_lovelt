@@ -1,47 +1,98 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Transformer-Based on Zhaoylee&#39;s Blogs</title>
-    <link>https://zhaoylee.github.io/Blogs_lovelt/categories/transformer-based/</link>
-    <description>Recent content in Transformer-Based on Zhaoylee&#39;s Blogs</description>
-    <generator>Hugo</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Sun, 15 Mar 2026 21:59:16 +0800</lastBuildDate>
-    <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/categories/transformer-based/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</title>
-      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/</link>
-      <pubDate>Sun, 15 Mar 2026 21:59:16 +0800</pubDate>
-      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：CVPR&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2024&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;https://github.com/nullmax-vision/QAF2D&#34;&gt;nullmax-vision/QAF2D-CVPR 2024&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2403.06093&#34;&gt;Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;这篇发表于 CVPR 2024 的论文 &lt;strong&gt;《Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors》(简称 QAF2D)&lt;/strong&gt; 极具工程实用价值。它没有死磕 3D 空间中的特征提取瓶颈，而是打出了一套极其聪明的“降维组合拳”，巧妙地利用成熟的 2D 视觉技术来为 3D 检测器“引路”。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection</title>
-      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/</link>
-      <pubDate>Sun, 15 Mar 2026 20:52:51 +0800</pubDate>
-      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：ICLR&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2026&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;%E5%A1%AB%E5%86%99%E4%BD%A0%E7%9A%84URL&#34;&gt;无&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://openreview.net/pdf?id=3knS4J9isg&#34;&gt;PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;一-背景研究目的与核心问题&#34;&gt;一、 背景、研究目的与核心问题&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;研究背景：&lt;/strong&gt; 单目 3D 目标检测模型极度“吃数据”。然而，人工标注 3D 边界框极其昂贵且耗时，导致目前带 3D 标签的数据集规模很小，严重限制了模型的泛化能力。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</title>
-      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</link>
-      <pubDate>Sun, 15 Mar 2026 20:52:49 +0800</pubDate>
-      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：AAAI &lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2026&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;https://github.com/lsy010857/MonoDLGD&#34;&gt;MonoDLGD&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2511.13195&#34;&gt;Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;一-背景研究目的与核心问题&#34;&gt;一、 背景、研究目的与核心问题&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;研究背景：&lt;/strong&gt; 在基于 Transformer 的单目 3D 目标检测中，通过向真实标签注入噪声并让模型去重构（即查询去噪 Query Denoising），能有效加速模型收敛并提升几何感知能力。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising</title>
-      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/</link>
-      <pubDate>Sun, 15 Mar 2026 20:36:42 +0800</pubDate>
-      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：CVPR / ICCV / ECCV&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2026&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;： 无&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2601.01036&#34;&gt;Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;一-背景研究目的与核心问题&#34;&gt;一、 背景、研究目的与核心问题&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;研究背景：&lt;/strong&gt; 近年来，基于 Transformer（特别是 DETR 架构）的模型在 2D 目标检测中取得了巨大成功，并顺理成章地被引入到单目 3D 目标检测（M3OD）领域。这类模型依赖“查询（Query）”机制和“二分图匹配（Bipartite Matching）”来端到端地输出检测结果，无需繁琐的非极大值抑制（NMS）。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</title>
-      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</link>
-      <pubDate>Sun, 15 Mar 2026 19:38:47 +0800</pubDate>
-      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：CVPR / ICCV / ECCV&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2026&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;https://github.com/WYFDUT/SPAN&#34;&gt;GitHub 链接&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2511.06702&#34;&gt;SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-文献背景与研究动机&#34;&gt;1. 文献背景与研究动机&lt;/h2&gt;&#xA;&lt;h2 id=&#34;背景与现状&#34;&gt;背景与现状&lt;/h2&gt;&#xA;&lt;p&gt;单目3D目标检测（Monocular 3D Object Detection）是自动驾驶和机器人视觉中的核心任务，旨在仅通过单张RGB图像预测物体的3D边界框。&lt;/p&gt;</description>
-    </item>
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Transformer-Based - 分类 - Zhaoylee&#39;s Blogs</title>
+        <link>http://localhost:1683/Blogs_lovelt/categories/transformer-based/</link>
+        <description>Transformer-Based - 分类 - Zhaoylee&#39;s Blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 21:59:16 &#43;0800</lastBuildDate><atom:link href="http://localhost:1683/Blogs_lovelt/categories/transformer-based/" rel="self" type="application/rss+xml" /><item>
+    <title>StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</title>
+    <link>http://localhost:1683/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/</link>
+    <pubDate>Sun, 15 Mar 2026 21:59:16 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:1683/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR<br>
+<strong>📅 发表年份</strong>：2024<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/nullmax-vision/QAF2D" target="_blank" rel="noopener noreffer ">nullmax-vision/QAF2D-CVPR 2024</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2403.06093" target="_blank" rel="noopener noreffer ">Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</a></p>
+</blockquote>
+<hr>
+<p>这篇发表于 CVPR 2024 的论文 <strong>《Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors》(简称 QAF2D)</strong> 极具工程实用价值。它没有死磕 3D 空间中的特征提取瓶颈，而是打出了一套极其聪明的“降维组合拳”，巧妙地利用成熟的 2D 视觉技术来为 3D 检测器“引路”。</p>]]></description>
+</item>
+<item>
+    <title>PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection</title>
+    <link>http://localhost:1683/Blogs_lovelt/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 20:52:51 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:1683/Blogs_lovelt/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：ICLR<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">无</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openreview.net/pdf?id=3knS4J9isg" target="_blank" rel="noopener noreffer ">PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 单目 3D 目标检测模型极度“吃数据”。然而，人工标注 3D 边界框极其昂贵且耗时，导致目前带 3D 标签的数据集规模很小，严重限制了模型的泛化能力。</p>]]></description>
+</item>
+<item>
+    <title>Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</title>
+    <link>http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 20:52:49 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:1683/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：AAAI <br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/lsy010857/MonoDLGD" target="_blank" rel="noopener noreffer ">MonoDLGD</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2511.13195" target="_blank" rel="noopener noreffer ">Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 在基于 Transformer 的单目 3D 目标检测中，通过向真实标签注入噪声并让模型去重构（即查询去噪 Query Denoising），能有效加速模型收敛并提升几何感知能力。</p>]]></description>
+</item>
+<item>
+    <title>Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising</title>
+    <link>http://localhost:1683/Blogs_lovelt/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/</link>
+    <pubDate>Sun, 15 Mar 2026 20:36:42 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:1683/Blogs_lovelt/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR / ICCV / ECCV<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>： 无<br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2601.01036" target="_blank" rel="noopener noreffer ">Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 近年来，基于 Transformer（特别是 DETR 架构）的模型在 2D 目标检测中取得了巨大成功，并顺理成章地被引入到单目 3D 目标检测（M3OD）领域。这类模型依赖“查询（Query）”机制和“二分图匹配（Bipartite Matching）”来端到端地输出检测结果，无需繁琐的非极大值抑制（NMS）。</p>]]></description>
+</item>
+<item>
+    <title>SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</title>
+    <link>http://localhost:1683/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 19:38:47 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>http://localhost:1683/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR / ICCV / ECCV<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/WYFDUT/SPAN" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2511.06702" target="_blank" rel="noopener noreffer ">SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h2 id="1-文献背景与研究动机">1. 文献背景与研究动机</h2>
+<h2 id="背景与现状">背景与现状</h2>
+<p>单目3D目标检测（Monocular 3D Object Detection）是自动驾驶和机器人视觉中的核心任务，旨在仅通过单张RGB图像预测物体的3D边界框。</p>]]></description>
+</item>
+</channel>
 </rss>
