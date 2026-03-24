@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver">
+  <meta property="og:description" content="🏛️ 会议/期刊：ICCV
+📅 发表年份：2023
+💻 开源代码：Xianpeng919/monoxiver (ICCV&#39;23)
+📄 论文题目：Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver
+这篇发表于 ICCV 2023 的论文 《Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver》(简称 MonoXiver)，提供了一个非常经典且极具工程价值的“自上而下（Top-down）”纠错思路。它并没有试图发明一种全新的主干网络，而是设计了一个强大的“插件”，专门用来拯救那些定位不准的预测框。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-15T21:14:36+08:00">
+    <meta property="article:modified_time" content="2026-03-15T21:14:36+08:00">
+    <meta property="article:tag" content="边界框去噪">
+    <meta property="article:tag" content="跨模态特征融合">
+    <meta property="article:tag" content="后处理">
+    <meta property="og:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/cover.jpg">
+  <meta name="twitter:title" content="MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：ICCV
+📅 发表年份：2023
+💻 开源代码：Xianpeng919/monoxiver (ICCV&#39;23)
+📄 论文题目：Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver
+这篇发表于 ICCV 2023 的论文 《Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver》(简称 MonoXiver)，提供了一个非常经典且极具工程价值的“自上而下（Top-down）”纠错思路。它并没有试图发明一种全新的主干网络，而是设计了一个强大的“插件”，专门用来拯救那些定位不准的预测框。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" /><link rel="prev" href="https://zhaoylee.github.io/Blogs_lovelt/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" /><link rel="next" href="https://zhaoylee.github.io/Blogs_lovelt/posts/open-vocabulary-monocular-3d-object-detection/" /><link rel="stylesheet" href="/Blogs_lovelt/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver\/"
+        },"genre": "posts","keywords": "边界框去噪, 跨模态特征融合, 后处理","wordcount":  2357 ,
+        "url": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver\/","datePublished": "2026-03-15T21:14:36+08:00","dateModified": "2026-03-15T21:14:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/Blogs_lovelt/"> 主页 </a><a class="menu-item" href="/Blogs_lovelt/categories/"> 分类 </a><a class="menu-item" href="/Blogs_lovelt/tags/"> 标签 </a><a class="menu-item" href="/Blogs_lovelt/posts/"> 文章 </a><a class="menu-item" href="/Blogs_lovelt/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/Blogs_lovelt/" title="">主页</a><a class="menu-item" href="/Blogs_lovelt/categories/" title="">分类</a><a class="menu-item" href="/Blogs_lovelt/tags/" title="">标签</a><a class="menu-item" href="/Blogs_lovelt/posts/" title="">文章</a><a class="menu-item" href="/Blogs_lovelt/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/Blogs_lovelt/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/Blogs_lovelt/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/"><i class="far fa-folder" aria-hidden="true"></i>即插即用型</a>&nbsp;<a href="/Blogs_lovelt/categories/centernet-based/"><i class="far fa-folder" aria-hidden="true"></i>CenterNet-Based</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-15">2026-03-15</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 2357 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/cover.jpg"
+        data-srcset="/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/cover.jpg, /Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/cover.jpg 1.5x, /Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/cover.jpg 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/cover.jpg"
+        title="/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/cover.jpg" width="1166" height="485" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</a></li>
+        <li><a href="#二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</a>
+          <ul>
+            <li><a href="#1-核心方法monoxiver-框架">1. 核心方法：MonoXiver 框架</a></li>
+            <li><a href="#2-关键数据与主要发现">2. 关键数据与主要发现</a></li>
+            <li><a href="#3-结论">3. 结论</a></li>
+          </ul>
+        </li>
+        <li><a href="#三-新颖概念通俗解释">三、 新颖概念通俗解释</a></li>
+        <li><a href="#四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：ICCV<br>
+<strong>📅 发表年份</strong>：2023<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/Xianpeng919/monoxiver" target="_blank" rel="noopener noreffer ">Xianpeng919/monoxiver (ICCV'23)</a><br>
+<strong>📄 论文题目</strong>：<a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Liu_Monocular_3D_Object_Detection_with_Bounding_Box_Denoising_in_3D_ICCV_2023_paper.pdf" target="_blank" rel="noopener noreffer ">Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver</a></p>
+</blockquote>
+<hr>
+<p>这篇发表于 ICCV 2023 的论文 <strong>《Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver》(简称 MonoXiver)</strong>，提供了一个非常经典且极具工程价值的“自上而下（Top-down）”纠错思路。它并没有试图发明一种全新的主干网络，而是设计了一个强大的“插件”，专门用来拯救那些定位不准的预测框。</p>
+<p><a href="https://www.youtube.com/watch?v=5i1rUaqgBv4" target="_blank" rel="noopener noreffer ">视频讲解</a></p>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 在单目 3D 目标检测（M3OD）中，由于缺乏深度的直接测量，模型最难做好的就是“3D 中心点的精准定位”。现有的前沿模型（如 SMOKE、MonoCon）大多是“自下而上（Bottom-up）”的，即直接从 2D 图像特征单向回归出 3D 边界框，这种单步预测往往存在较大的定位误差。</p>
+</li>
+<li>
+<p><strong>研究目的：</strong> 旨在提出一个通用的、即插即用的后续验证与去噪（Denoising）阶段。通过在 3D 空间中进行局部重采样和特征验证，进一步逼近真实的 3D 物理边界。</p>
+</li>
+<li>
+<p><strong>核心问题（痛点）：</strong> 作者观察到一个强有力的现象：虽然基础模型预测的初始 3D 框可能不准，但<strong>完美的真实 3D 框（Ground Truth）往往就在这个错误预测框的“附近”</strong>。如果能在这个初始框的周围进行密集的“局部搜索”，并设计一个机制来剔除掉错误的候选框（即去噪），就能极大提升最终的检测精度。</p>
+</li>
+</ul>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/main.jpg" width="100%"><figcaption>
+      <h4>整体框架图</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</h3>
+<h4 id="1-核心方法monoxiver-框架">1. 核心方法：MonoXiver 框架</h4>
+<p>该框架将 M3OD 变成了一个“两阶段”的过程：先给个大概，再精雕细琢。</p>
+<ul>
+<li>
+<p><strong>3D 局部网格采样 (Local-Grid Sampling)：</strong> 系统首先接收现成检测器（如 MonoCon）输出的初始 3D 预测框。然后，以这个框为中心，在 3D 空间的 X 轴和 Z 轴（鸟瞰图视角）上按照一定的步长撒网，生成几十上百个密集的“锚点框（Anchors/Proposals）”。</p>
+</li>
+<li>
+<p><strong>3D 到 2D 的特征投影：</strong> 将这批新生成的 3D 候选框投影回 2D 图像平面，提取它们对应的 2D 视觉特征（外观）以及 3D 到 2D 的几何投影特征。</p>
+</li>
+<li>
+<p><strong>基于 Perceiver 的去噪与重打分 (Denoising by Perceiver)：</strong> 这是网络的大脑。由于 2D 图像特征（密集像素）和 3D 几何特征（稀疏数值）在维度和模态上差异巨大，作者引入了强大的 <strong>Perceiver I/O</strong> 模型。Perceiver 能够高效地融合这两种异构信息，对所有候选框进行“验证”。它会过滤掉那些与原图像外观不符的错误框（去噪），并输出最终得分最高的那个完美边界框及其尺寸微调残差。</p>
+</li>
+</ul>
+<h4 id="2-关键数据与主要发现">2. 关键数据与主要发现</h4>
+<ul>
+<li>
+<p><strong>极强的通用性：</strong> 作者将 MonoXiver 插件接入了具有不同检测精度的多种基础模型（如 SMOKE、MonoCon），在经典的 KITTI 数据集和极具挑战性的大规模 Waymo 数据集上进行了测试。</p>
+</li>
+<li>
+<p><strong>显著且稳定的性能提升：</strong> 实验证明，无论基础模型强弱，接入 MonoXiver 后均能获得一致且显著的性能提升（在某些类别上提升甚至高达 3.3 AP），证明了在 3D 局部空间进行二次验证的巨大潜力。</p>
+</li>
+<li>
+<p><strong>计算代价可控：</strong> 尽管生成了大量候选框，但得益于 Perceiver 的高效设计，整体框架仅增加了约 8 毫秒的推理延迟，依然保持了实时检测的能力。</p>
+</li>
+</ul>
+<h4 id="3-结论">3. 结论</h4>
+<p>研究表明，“2D 到 3D 的生成”结合“3D 到 2D 的验证去噪”是一种行之有效的双向信息流范式。通过在 3D 空间进行局部网格搜索并利用 Perceiver 进行跨模态特征融合，可以极大缓解单目 3D 检测中固有的定位模糊问题。</p>
+<figure><img src="/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/result.jpg" width="80%"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="三-新颖概念通俗解释">三、 新颖概念通俗解释</h3>
+<ul>
+<li>
+<p><strong>局部网格搜索 (Local-Grid Search)：</strong> 想象你用雷达探测海底的沉船。雷达给了一个模糊的坐标“大概在区域 A”（初始预测）。你如果再去扫一遍整片海域是不现实的。最聪明的做法是，开着探测艇直接去区域 A，然后在 A 的周围极其密集地投下几百个声呐探测点（局部网格采样）。这样你就能在极小的范围内，精确锁定沉船的真实位置。</p>
+</li>
+<li>
+<p><strong>Perceiver I/O 架构：</strong> 传统的 Transformer 处理规整的文字或图片很厉害，但如果输入是“一堆高清图像像素”加上“几个干巴巴的 3D 坐标数字”，它就容易乱套。Perceiver 就像是一个拥有“超强潜意识缓存（Latent Space）”的天才翻译官。无论你输入的信息多杂乱、维度差距多大，它都能先将其压缩到一个固定大小的潜在空间中进行消化融合，最后输出精准的判断。它在这里完美解决了 2D 外观和 3D 几何的跨模态融合难题。</p>
+</li>
+</ul>
+<h3 id="四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</h3>
+<p><strong>优点：</strong></p>
+<ol>
+<li>
+<p><strong>架构解耦，即插即用：</strong> 这是一个极度友好的后处理模块，不需要魔改原有的检测器代码，非常适合工程落地。</p>
+</li>
+<li>
+<p><strong>融合逻辑清晰：</strong> 明确了 2D 外观特征是“判别器”，3D 几何特征是“候选者”，利用 Perceiver 桥接两者的思路非常优雅。</p>
+</li>
+</ol>
+<p><strong>缺点与局限性：</strong></p>
+<ol>
+<li>
+<p><strong>强依赖于底层视觉特征的完好性：</strong> Perceiver 在进行验证时，极度依赖目标物体在 2D 图像上的外观特征。如果物体被严重截断或遮挡，提取出的 2D 特征充满噪声，Perceiver 就会失去判断依据，导致去噪失败。</p>
+</li>
+<li>
+<p><strong>孤立的实例级搜索：</strong> 局部网格采样只盯着单个物体看，忽略了宏观物理法则。它可能会盲目地挑选出一个得分很高，但实际上已经和旁边车辆发生 3D 物理穿透的候选框。</p>
+</li>
+</ol>
+<p><strong>极具潜力的后续研究方向（破局点）：</strong></p>
+<p>基于上述局限性，如果你要在这篇论文的基础上继续深挖，以下两个方向极具学术突破价值：</p>
+<ol>
+<li>
+<p><strong>引入多粒度特征恢复 (Multi-Granularity Feature Restoration)：</strong> 针对其在截断和遮挡场景下的脆弱性，可以在 Perceiver 接收 2D 特征之前，前置一个多粒度特征恢复模块。通过先从粗粒度语义修复物体的整体结构，再从细粒度纹理填补残缺边缘，能够为 Perceiver 提供远比原始图像更鲁棒、更丰满的外观特征，从而极大提升去噪网络在恶劣工况下的上限。</p>
+</li>
+<li>
+<p><strong>叠加场景拓扑正则化 (Scene Topological Regularization)：</strong> 为了解决候选框孤立验证导致的物理穿透或位置悬空问题，亟需在重打分（Rescoring）阶段引入场景级别的拓扑正则化约束。在评估局部网格中的候选框时，不仅要看它自身的特征契合度，还要强制要求它必须符合全局的深度排序逻辑以及路面依附法则。利用拓扑关系作为额外的“过滤筛”，能有效剪枝掉那些看似正确但物理违和的候选框。</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" data-title="MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver" data-hashtags="边界框去噪,跨模态特征融合,后处理"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" data-title="MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" data-hashtag="边界框去噪"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" data-title="MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" data-title="MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" data-title="MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver" data-image="cover.jpg"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/" data-title="MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2fzhaoylee.github.io%2fBlogs_lovelt%2fposts%2fmonoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver%2f&amp;text=MonoXiver%ef%bc%9a%20Monocular%203D%20Object%20Detection%20with%20Bounding%20Box%20Denoising%20in%203D%20by%20Perceiver" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/Blogs_lovelt/tags/%E8%BE%B9%E7%95%8C%E6%A1%86%E5%8E%BB%E5%99%AA/">边界框去噪</a>,&nbsp;<a href="/Blogs_lovelt/tags/%E8%B7%A8%E6%A8%A1%E6%80%81%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/">跨模态特征融合</a>,&nbsp;<a href="/Blogs_lovelt/tags/%E5%90%8E%E5%A4%84%E7%90%86/">后处理</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/Blogs_lovelt/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/Blogs_lovelt/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/" class="prev" rel="prev" title="PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection"><i class="fas fa-angle-left" aria-hidden="true"></i>PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection</a>
+            <a href="/Blogs_lovelt/posts/open-vocabulary-monocular-3d-object-detection/" class="next" rel="next" title="Open Vocabulary Monocular 3D Object Detection">Open Vocabulary Monocular 3D Object Detection<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/Blogs_lovelt/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.zh.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/mhchem.min.js"></script><script src="/Blogs_lovelt/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/Blogs_lovelt/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/Blogs_lovelt/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/Blogs_lovelt/js/theme.js"></script></body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection">
+  <meta property="og:description" content="🏛️ 会议/期刊：CVPR / ICCV / ECCV
+📅 发表年份：2026
+💻 开源代码：GitHub 链接
+📄 论文题目：SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection
+1. 文献背景与研究动机 背景与现状 单目3D目标检测（Monocular 3D Object Detection）是自动驾驶和机器人视觉中的核心任务，旨在仅通过单张RGB图像预测物体的3D边界框。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-15T19:38:47+08:00">
+    <meta property="article:modified_time" content="2026-03-15T19:38:47+08:00">
+    <meta property="article:tag" content="协同约束">
+    <meta property="article:tag" content="3D-2D投影对齐">
+    <meta property="og:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/cover.jpg">
+  <meta name="twitter:title" content="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：CVPR / ICCV / ECCV
+📅 发表年份：2026
+💻 开源代码：GitHub 链接
+📄 论文题目：SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection
+1. 文献背景与研究动机 背景与现状 单目3D目标检测（Monocular 3D Object Detection）是自动驾驶和机器人视觉中的核心任务，旨在仅通过单张RGB图像预测物体的3D边界框。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" /><link rel="prev" href="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" /><link rel="next" href="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" /><link rel="stylesheet" href="/Blogs_lovelt/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/span--spatial-projection-alignment-for-monocular-3d-object-detection\/"
+        },"genre": "posts","keywords": "协同约束, 3D-2D投影对齐","wordcount":  1320 ,
+        "url": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/span--spatial-projection-alignment-for-monocular-3d-object-detection\/","datePublished": "2026-03-15T19:38:47+08:00","dateModified": "2026-03-15T19:38:47+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/Blogs_lovelt/"> 主页 </a><a class="menu-item" href="/Blogs_lovelt/categories/"> 分类 </a><a class="menu-item" href="/Blogs_lovelt/tags/"> 标签 </a><a class="menu-item" href="/Blogs_lovelt/posts/"> 文章 </a><a class="menu-item" href="/Blogs_lovelt/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/Blogs_lovelt/" title="">主页</a><a class="menu-item" href="/Blogs_lovelt/categories/" title="">分类</a><a class="menu-item" href="/Blogs_lovelt/tags/" title="">标签</a><a class="menu-item" href="/Blogs_lovelt/posts/" title="">文章</a><a class="menu-item" href="/Blogs_lovelt/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/Blogs_lovelt/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/Blogs_lovelt/categories/transformer-based/"><i class="far fa-folder" aria-hidden="true"></i>Transformer-Based</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-15">2026-03-15</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1320 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/cover.jpg"
+        data-srcset="/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/cover.jpg, /Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/cover.jpg 1.5x, /Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/cover.jpg 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/cover.jpg"
+        title="/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/cover.jpg" width="771" height="914" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-文献背景与研究动机">1. 文献背景与研究动机</a></li>
+    <li><a href="#背景与现状">背景与现状</a></li>
+    <li><a href="#核心问题">核心问题</a></li>
+    <li><a href="#2-核心技术span-框架">2. 核心技术：SPAN 框架</a>
+      <ul>
+        <li><a href="#1-空间点对齐-spatial-point-alignment">(1) 空间点对齐 (Spatial Point Alignment)</a></li>
+        <li><a href="#2-3d-2d-投影对齐-3d-2d-projection-alignment">(2) 3D-2D 投影对齐 (3D-2D Projection Alignment)</a></li>
+        <li><a href="#3-分层任务学习-hierarchical-task-learning-htl">(3) 分层任务学习 (Hierarchical Task Learning, HTL)</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-主要发现与结论">3. 主要发现与结论</a></li>
+    <li><a href="#4-专家客观评价">4. 专家客观评价</a>
+      <ul>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#缺点局限性">缺点/局限性</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-后续研究方向">5. 后续研究方向</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR / ICCV / ECCV<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/WYFDUT/SPAN" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2511.06702" target="_blank" rel="noopener noreffer ">SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h2 id="1-文献背景与研究动机">1. 文献背景与研究动机</h2>
+<h2 id="背景与现状">背景与现状</h2>
+<p>单目3D目标检测（Monocular 3D Object Detection）是自动驾驶和机器人视觉中的核心任务，旨在仅通过单张RGB图像预测物体的3D边界框。</p>
+<h2 id="核心问题">核心问题</h2>
+<p>目前主流的方法多采用<strong>解耦预测范式（Decoupled Prediction Paradigm）</strong>：将3D边界框的回归任务拆分为多个独立的分支，分别预测中心点、深度、尺寸和旋转角。</p>
+<ul>
+<li>
+<p><strong>痛点：</strong> 这种策略虽然简化了学习，但忽略了各几何属性之间的<strong>协同约束关系</strong>。</p>
+</li>
+<li>
+<p><strong>后果：</strong> 预测结果往往缺乏几何一致性（如3D框在投影回2D平面时与原物体不匹配），导致定位精度遇到瓶颈。</p>
+</li>
+</ul>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/main.jpg" width="100%"><figcaption>
+      <h4>整体框架图</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h2 id="2-核心技术span-框架">2. 核心技术：SPAN 框架</h2>
+<p>论文提出了 <strong>SPAN (Spatial-Projection Alignment)</strong>，这是一种可插件式（Plug-and-play）的优化框架，核心包含两大对齐组件和一套训练策略。</p>
+<h3 id="1-空间点对齐-spatial-point-alignment">(1) 空间点对齐 (Spatial Point Alignment)</h3>
+<ul>
+<li>
+<p><strong>原理：</strong> 强制预测的3D边界框与地面真值（Ground-truth）之间存在显式的全局空间约束。</p>
+</li>
+<li>
+<p><strong>作用：</strong> 纠正因解耦回归导致的“空间漂移”。它不是单独看深度或位置，而是将3D框作为一个整体，通过惩罚空间顶点的偏移来保证整体几何形状的正确性。</p>
+</li>
+</ul>
+<h3 id="2-3d-2d-投影对齐-3d-2d-projection-alignment">(2) 3D-2D 投影对齐 (3D-2D Projection Alignment)</h3>
+<ul>
+<li>
+<p><strong>原理：</strong> 确保3D框在投影到2D图像平面后，能紧密且准确地嵌套在其对应的2D检测框内。</p>
+</li>
+<li>
+<p><strong>通俗解释：</strong> 想象一个纸箱（3D框），你从相机视角看过去，它的轮廓应该刚好填满照片里的那个矩形（2D框）。如果投影出来的轮廓歪了或小了，说明3D参数（尤其是深度和角度）算错了。</p>
+</li>
+</ul>
+<h3 id="3-分层任务学习-hierarchical-task-learning-htl">(3) 分层任务学习 (Hierarchical Task Learning, HTL)</h3>
+<ul>
+<li>
+<p><strong>创新点：</strong> 针对训练初期参数波动剧烈、几何约束容易失效的问题，HTL 采取“先易后难”的策略。</p>
+</li>
+<li>
+<p><strong>逻辑：</strong> 随着3D属性预测趋于稳定，逐步增加空间-投影对齐损失的比重，防止早期的错误预测通过几何约束传播，从而确保训练的稳定性。</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-主要发现与结论">3. 主要发现与结论</h2>
+<ul>
+<li>
+<p><strong>显著提升：</strong> 实验证明，将 SPAN 集成到现有的 SOTA（先进）单目检测模型中，无需在推理阶段增加任何额外模块或计算开销，即可大幅提升 AP（平均精度）。</p>
+</li>
+<li>
+<p><strong>几何一致性：</strong> 定性分析显示，经过 SPAN 优化的模型生成的3D框在投影视觉上更加自然，解决了以往深度估算与视觉表现不符的问题。</p>
+</li>
+<li>
+<p><strong>普适性：</strong> 该框架表现出极强的通用性，能无缝适配多种主流的单目3D检测基准模型。</p>
+</li>
+</ul>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/result.jpg" width="90%"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h2 id="4-专家客观评价">4. 专家客观评价</h2>
+<h3 id="优点">优点</h3>
+<ol>
+<li>
+<p><strong>即插即用：</strong> 这是一个基于 Loss（损失函数）层面的优化方案，不改变模型前向计算结构，易于在工业界部署。</p>
+</li>
+<li>
+<p><strong>物理直觉强：</strong> 抓住了“投影一致性”这一单目视觉的核心几何矛盾，研究逻辑自洽。</p>
+</li>
+<li>
+<p><strong>训练稳健：</strong> HTL 策略有效解决了复杂几何约束在训练初期易引发梯度爆炸或不收敛的顽疾。</p>
+</li>
+</ol>
+<h3 id="缺点局限性">缺点/局限性</h3>
+<ol>
+<li>
+<p><strong>极度依赖2D质量：</strong> 投影对齐高度依赖2D检测框的精度，若2D检测受遮挡或光照影响较大，可能会误导3D参数的优化。</p>
+</li>
+<li>
+<p><strong>算力成本：</strong> 虽然推理无开销，但在训练阶段计算投影对齐（涉及矩阵运算和顶点变换）会增加一定的训练时长。</p>
+</li>
+</ol>
+<hr>
+<h2 id="5-后续研究方向">5. 后续研究方向</h2>
+<ul>
+<li>
+<p><strong>遮挡处理：</strong> 探索在物体被严重遮挡、2D框不完整的情况下，如何利用局部特征进行投影对齐。</p>
+</li>
+<li>
+<p><strong>多帧协同：</strong> 将 SPAN 的空间对齐扩展到视频序列中，利用时间连续性进一步平滑3D框的预测。</p>
+</li>
+<li>
+<p><strong>端到端协同：</strong> 考虑将 2D 检测器的预测不确定性引入 SPAN，实现动态权重的几何对齐。</p>
+</li>
+</ul>
+<hr>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" data-title="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection" data-hashtags="协同约束,3D-2D投影对齐"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" data-title="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" data-hashtag="协同约束"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" data-title="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" data-title="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" data-title="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection" data-image="cover.jpg"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" data-title="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2fzhaoylee.github.io%2fBlogs_lovelt%2fposts%2fspan--spatial-projection-alignment-for-monocular-3d-object-detection%2f&amp;text=SPAN%3a%20Spatial-Projection%20Alignment%20for%20Monocular%203D%20Object%20Detection" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/Blogs_lovelt/tags/%E5%8D%8F%E5%90%8C%E7%BA%A6%E6%9D%9F/">协同约束</a>,&nbsp;<a href="/Blogs_lovelt/tags/3d-2d%E6%8A%95%E5%BD%B1%E5%AF%B9%E9%BD%90/">3D-2D投影对齐</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/Blogs_lovelt/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" class="prev" rel="prev" title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i class="fas fa-angle-left" aria-hidden="true"></i>DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION</a>
+            <a href="/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" class="next" rel="next" title="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding">SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/Blogs_lovelt/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.zh.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/mhchem.min.js"></script><script src="/Blogs_lovelt/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/Blogs_lovelt/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/Blogs_lovelt/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/Blogs_lovelt/js/theme.js"></script></body>
+</html>

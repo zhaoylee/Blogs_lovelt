@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection">
+  <meta property="og:description" content="🏛️ 会议/期刊：IJCV
+📅 发表年份：2026
+💻 开源代码：GitHub 链接
+📄 论文题目：Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection
+一、 背景、研究目的与核心问题 研究背景： 单目 3D 目标检测本身是一个病态（ill-posed）问题，由于缺乏深度信息，模型极度依赖海量、多样化的训练数据来学习鲁棒的特征。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-15T19:59:15+08:00">
+    <meta property="article:modified_time" content="2026-03-15T19:59:15+08:00">
+    <meta property="article:tag" content="数据增强">
+    <meta property="article:tag" content="部分标注">
+    <meta property="og:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/cover.jpg">
+  <meta name="twitter:title" content="Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：IJCV
+📅 发表年份：2026
+💻 开源代码：GitHub 链接
+📄 论文题目：Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection
+一、 背景、研究目的与核心问题 研究背景： 单目 3D 目标检测本身是一个病态（ill-posed）问题，由于缺乏深度信息，模型极度依赖海量、多样化的训练数据来学习鲁棒的特征。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" /><link rel="prev" href="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" /><link rel="next" href="https://zhaoylee.github.io/Blogs_lovelt/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/" /><link rel="stylesheet" href="/Blogs_lovelt/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection\/"
+        },"genre": "posts","keywords": "数据增强, 部分标注","wordcount":  1608 ,
+        "url": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection\/","datePublished": "2026-03-15T19:59:15+08:00","dateModified": "2026-03-15T19:59:15+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/Blogs_lovelt/"> 主页 </a><a class="menu-item" href="/Blogs_lovelt/categories/"> 分类 </a><a class="menu-item" href="/Blogs_lovelt/tags/"> 标签 </a><a class="menu-item" href="/Blogs_lovelt/posts/"> 文章 </a><a class="menu-item" href="/Blogs_lovelt/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/Blogs_lovelt/" title="">主页</a><a class="menu-item" href="/Blogs_lovelt/categories/" title="">分类</a><a class="menu-item" href="/Blogs_lovelt/tags/" title="">标签</a><a class="menu-item" href="/Blogs_lovelt/posts/" title="">文章</a><a class="menu-item" href="/Blogs_lovelt/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/Blogs_lovelt/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/Blogs_lovelt/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/"><i class="far fa-folder" aria-hidden="true"></i>即插即用型</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-15">2026-03-15</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1608 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/cover.jpg"
+        data-srcset="/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/cover.jpg, /Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/cover.jpg 1.5x, /Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/cover.jpg 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/cover.jpg"
+        title="/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/cover.jpg" width="1470" height="735" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</a></li>
+        <li><a href="#二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</a>
+          <ul>
+            <li><a href="#1-核心方法在线解耦与重组机制">1. 核心方法：在线解耦与重组机制</a></li>
+            <li><a href="#2-关键数据与主要发现">2. 关键数据与主要发现</a></li>
+          </ul>
+        </li>
+        <li><a href="#三-优缺点客观评价与后续研究方向">三、 优缺点客观评价与后续研究方向</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：IJCV<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/kwong292521/DR-Traversal-M3D" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2602.20627" target="_blank" rel="noopener noreffer ">Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 单目 3D 目标检测本身是一个病态（ill-posed）问题，由于缺乏深度信息，模型极度依赖海量、多样化的训练数据来学习鲁棒的特征。</p>
+</li>
+<li>
+<p><strong>核心痛点（实体耦合）：</strong> 现实世界的数据采集中存在强烈的“人工偏差”。具体来说，<strong>物体（Object）、场景（Scene）和相机位姿（Camera Pose）</strong> 这三个本应独立的实体，在真实图像中被死死地“绑定”在了一起。例如，某辆特定型号的汽车总是出现在特定的街道上，并被固定视角的相机拍下。</p>
+</li>
+<li>
+<p><strong>研究目的：</strong> 这种“紧密耦合”导致模型对同质化数据产生过拟合，数据利用率极低。论文旨在打破这种耦合，用极其高效的方式人为创造出覆盖“全光谱组合”的训练数据。</p>
+</li>
+</ul>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/main.jpg" width="100%"><figcaption>
+      <h4>整理结构图</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</h3>
+<h4 id="1-核心方法在线解耦与重组机制">1. 核心方法：在线解耦与重组机制</h4>
+<p>作者提出了一套即插即用（plug-and-play）的在线数据操纵（Data Manipulation）框架，核心分为两大步骤：</p>
+<ul>
+<li>
+<p><strong>彻底解耦 (Decomposition)：</strong> 系统首先将原始训练图像“暴力拆解”，提取出两个独立的资源库：</p>
+<ul>
+<li>
+<p><strong>3D 物体库：</strong> 将带有标注的物体抠出，并转化为带纹理的 3D 点云模型。</p>
+</li>
+<li>
+<p><strong>空背景库：</strong> 将原图中的物体抹除，生成纯粹的背景场景，并计算出可用的空闲区域（Freespace）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>动态重组 (Recomposition)：</strong> 在模型训练的每个 Epoch 中，系统会不断进行“洗牌”。它从场景库中抽取一个背景，在合法的空闲区域内随机插入 3D 物体点云，并<strong>为其施加随机扰动的相机位姿进行重新渲染</strong>。</p>
+</li>
+<li>
+<p>这样一来，旧的物体出现在了新的场景中，并且拥有了全新的观察视角。</p>
+</li>
+</ul>
+<h4 id="2-关键数据与主要发现">2. 关键数据与主要发现</h4>
+<ul>
+<li>
+<p><strong>广泛的有效性：</strong> 作者将这套框架作为插件，无缝接入了 5 种目前最具代表性的 M3OD 模型中，并在经典的 KITTI 数据集和更复杂、挑战性更大的 Waymo 数据集上进行了全面验证，均实现了显著的性能跃升。</p>
+</li>
+<li>
+<p><strong>极致的数据效率：</strong> 该方案支持“完全监督”和“稀疏监督”两种模式。在稀疏监督设置下（例如只标注距离自车最近的物体），模型依然能通过重组机制生成大量高质量训练样本，在保证精度的同时，将人工标注成本降到了最低。</p>
+</li>
+</ul>
+<hr>
+<h3 id="三-优缺点客观评价与后续研究方向">三、 优缺点客观评价与后续研究方向</h3>
+<p><strong>优点：</strong></p>
+<ol>
+<li>
+<p><strong>降维打击了传统 2D 增强：</strong> 传统的 Copy-Paste（复制粘贴）数据增强都是在 2D 像素层面进行的，极易破坏 3D 透视关系并产生不合理的遮挡。该方法先将物体提升到带有纹理的 3D 点云空间，再结合相机的内参/外参进行 3D 重组渲染，物理正确性极高。</p>
+</li>
+<li>
+<p><strong>打破数据孤岛：</strong> 从本质上扩展了训练数据流的边界，让模型见识到了现实中极难采到的“长尾场景（Corner Cases）”。</p>
+</li>
+</ol>
+<p><strong>缺点与局限性：</strong></p>
+<ol>
+<li>
+<p><strong>强依赖于初始标注精度：</strong> “解耦”过程需要基于真实的 3D 边界框来抠取点云。如果原始标注框有少许偏差，抠出来的 3D 物体就会携带严重的背景噪声，这在重组时会形成明显的伪影。</p>
+</li>
+<li>
+<p><strong>物理与光影割裂：</strong> 纯几何层面的放置和渲染，无法解决新物体与新场景之间的光照（Lighting）不一致问题，模型可能会将这种“割裂感”当作一种错误的特征捷径（Shortcut）进行学习。</p>
+</li>
+</ol>
+<p><strong>极具潜力的后续研究方向：</strong></p>
+<ol>
+<li>
+<p><strong>场景拓扑正则化 (Scene Topological Regularization)：</strong> 虽然该框架在重组时使用了空闲区域（Freespace）地图，但随机的插入依然可能破坏场景深层次的连贯性。引入场景拓扑正则化，可以更好地约束重组后物体之间、物体与路面之间的空间拓扑关系，确保生成场景的逻辑严密性。</p>
+</li>
+<li>
+<p><strong>多粒度特征恢复 (Multi-Granularity Feature Restoration)：</strong> 物体在从 2D 提取并转换为 3D 点云表示的过程中，不可避免地会产生几何残缺和纹理丢失。如果在重组渲染阶段，设计一种多粒度的特征恢复网络，将能极大地修复抠图带来的边缘损失，提升合成数据的真实度。</p>
+</li>
+<li>
+<p><strong>自适应光照融合：</strong> 探索结合轻量级的神经渲染技术（如简化的 NeRF 或 3D Gaussian Splatting），使插入的物体能够自适应目标场景的全局光照。</p>
+</li>
+</ol>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/result.jpg" width="90%"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+
+<hr>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" data-title="Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection" data-hashtags="数据增强,部分标注"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" data-title="Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" data-hashtag="数据增强"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" data-title="Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" data-title="Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" data-title="Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection" data-image="cover.jpg"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" data-title="Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2fzhaoylee.github.io%2fBlogs_lovelt%2fposts%2fdr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection%2f&amp;text=Object-Scene-Camera%20Decomposition%20and%20Recomposition%20for%20Data-Efficient%20Monocular%203D%20Object%20Detection" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/Blogs_lovelt/tags/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/">数据增强</a>,&nbsp;<a href="/Blogs_lovelt/tags/%E9%83%A8%E5%88%86%E6%A0%87%E6%B3%A8/">部分标注</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/Blogs_lovelt/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" class="prev" rel="prev" title="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding"><i class="fas fa-angle-left" aria-hidden="true"></i>SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding</a>
+            <a href="/Blogs_lovelt/posts/mono3dv--monocular-3d-object-detection-with-3d-aware-bipartite-matching-and-variational-query-denoising/" class="next" rel="next" title="Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising">Mono3DV: Monocular 3D Object Detection with 3D-Aware Bipartite Matching and Variational Query DeNoising<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/Blogs_lovelt/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.zh.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/mhchem.min.js"></script><script src="/Blogs_lovelt/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/Blogs_lovelt/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/Blogs_lovelt/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/Blogs_lovelt/js/theme.js"></script></body>
+</html>

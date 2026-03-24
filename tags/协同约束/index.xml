@@ -1,19 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>协同约束 on Zhaoylee&#39;s Blogs</title>
-    <link>https://zhaoylee.github.io/Blogs_lovelt/tags/%E5%8D%8F%E5%90%8C%E7%BA%A6%E6%9D%9F/</link>
-    <description>Recent content in 协同约束 on Zhaoylee&#39;s Blogs</description>
-    <generator>Hugo</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Sun, 15 Mar 2026 19:38:47 +0800</lastBuildDate>
-    <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E5%8D%8F%E5%90%8C%E7%BA%A6%E6%9D%9F/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</title>
-      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</link>
-      <pubDate>Sun, 15 Mar 2026 19:38:47 +0800</pubDate>
-      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</guid>
-      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：CVPR / ICCV / ECCV&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2026&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;https://github.com/WYFDUT/SPAN&#34;&gt;GitHub 链接&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2511.06702&#34;&gt;SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-文献背景与研究动机&#34;&gt;1. 文献背景与研究动机&lt;/h2&gt;&#xA;&lt;h2 id=&#34;背景与现状&#34;&gt;背景与现状&lt;/h2&gt;&#xA;&lt;p&gt;单目3D目标检测（Monocular 3D Object Detection）是自动驾驶和机器人视觉中的核心任务，旨在仅通过单张RGB图像预测物体的3D边界框。&lt;/p&gt;</description>
-    </item>
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>协同约束 - 标签 - Zhaoylee&#39;s Blogs</title>
+        <link>https://zhaoylee.github.io/Blogs_lovelt/tags/%E5%8D%8F%E5%90%8C%E7%BA%A6%E6%9D%9F/</link>
+        <description>协同约束 - 标签 - Zhaoylee&#39;s Blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 19:38:47 &#43;0800</lastBuildDate><atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E5%8D%8F%E5%90%8C%E7%BA%A6%E6%9D%9F/" rel="self" type="application/rss+xml" /><item>
+    <title>SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 19:38:47 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/Blogs_lovelt/cover.jpg" referrerpolicy="no-referrer">
+            </div><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR / ICCV / ECCV<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/WYFDUT/SPAN" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2511.06702" target="_blank" rel="noopener noreffer ">SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h2 id="1-文献背景与研究动机">1. 文献背景与研究动机</h2>
+<h2 id="背景与现状">背景与现状</h2>
+<p>单目3D目标检测（Monocular 3D Object Detection）是自动驾驶和机器人视觉中的核心任务，旨在仅通过单张RGB图像预测物体的3D边界框。</p>]]></description>
+</item>
+</channel>
 </rss>

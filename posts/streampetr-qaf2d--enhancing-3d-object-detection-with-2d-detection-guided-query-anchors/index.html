@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors">
+  <meta property="og:description" content="🏛️ 会议/期刊：CVPR
+📅 发表年份：2024
+💻 开源代码：nullmax-vision/QAF2D-CVPR 2024
+📄 论文题目：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors
+这篇发表于 CVPR 2024 的论文 《Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors》(简称 QAF2D) 极具工程实用价值。它没有死磕 3D 空间中的特征提取瓶颈，而是打出了一套极其聪明的“降维组合拳”，巧妙地利用成熟的 2D 视觉技术来为 3D 检测器“引路”。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-15T21:59:16+08:00">
+    <meta property="article:modified_time" content="2026-03-15T21:59:16+08:00">
+    <meta property="article:tag" content="2D引导3D">
+    <meta property="article:tag" content="投影验证">
+    <meta property="og:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/cover.jpg">
+  <meta name="twitter:title" content="StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：CVPR
+📅 发表年份：2024
+💻 开源代码：nullmax-vision/QAF2D-CVPR 2024
+📄 论文题目：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors
+这篇发表于 CVPR 2024 的论文 《Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors》(简称 QAF2D) 极具工程实用价值。它没有死磕 3D 空间中的特征提取瓶颈，而是打出了一套极其聪明的“降维组合拳”，巧妙地利用成熟的 2D 视觉技术来为 3D 检测器“引路”。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" /><link rel="prev" href="https://zhaoylee.github.io/Blogs_lovelt/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/" /><link rel="next" href="https://zhaoylee.github.io/Blogs_lovelt/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" /><link rel="stylesheet" href="/Blogs_lovelt/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors\/"
+        },"genre": "posts","keywords": "2D引导3D, 投影验证","wordcount":  2077 ,
+        "url": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors\/","datePublished": "2026-03-15T21:59:16+08:00","dateModified": "2026-03-15T21:59:16+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/Blogs_lovelt/"> 主页 </a><a class="menu-item" href="/Blogs_lovelt/categories/"> 分类 </a><a class="menu-item" href="/Blogs_lovelt/tags/"> 标签 </a><a class="menu-item" href="/Blogs_lovelt/posts/"> 文章 </a><a class="menu-item" href="/Blogs_lovelt/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/Blogs_lovelt/" title="">主页</a><a class="menu-item" href="/Blogs_lovelt/categories/" title="">分类</a><a class="menu-item" href="/Blogs_lovelt/tags/" title="">标签</a><a class="menu-item" href="/Blogs_lovelt/posts/" title="">文章</a><a class="menu-item" href="/Blogs_lovelt/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/Blogs_lovelt/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/Blogs_lovelt/categories/transformer-based/"><i class="far fa-folder" aria-hidden="true"></i>Transformer-Based</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-15">2026-03-15</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 2077 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/cover.jpg"
+        data-srcset="/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/cover.jpg, /Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/cover.jpg 1.5x, /Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/cover.jpg 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/cover.jpg"
+        title="/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/cover.jpg" width="665" height="869" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</a></li>
+        <li><a href="#二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</a>
+          <ul>
+            <li><a href="#1-核心方法qaf2d-生成框架">1. 核心方法：QAF2D 生成框架</a></li>
+            <li><a href="#2-关键数据与主要发现">2. 关键数据与主要发现</a></li>
+            <li><a href="#3-结论">3. 结论</a></li>
+          </ul>
+        </li>
+        <li><a href="#三-新颖概念通俗解释">三、 新颖概念通俗解释</a></li>
+        <li><a href="#四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR<br>
+<strong>📅 发表年份</strong>：2024<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/nullmax-vision/QAF2D" target="_blank" rel="noopener noreffer ">nullmax-vision/QAF2D-CVPR 2024</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2403.06093" target="_blank" rel="noopener noreffer ">Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors</a></p>
+</blockquote>
+<hr>
+<p>这篇发表于 CVPR 2024 的论文 <strong>《Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors》(简称 QAF2D)</strong> 极具工程实用价值。它没有死磕 3D 空间中的特征提取瓶颈，而是打出了一套极其聪明的“降维组合拳”，巧妙地利用成熟的 2D 视觉技术来为 3D 检测器“引路”。</p>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 当前主流的多视角/单目 3D 目标检测模型（如 StreamPETR、BEVFormer 等）大多基于 Transformer 的 Query 架构。它们通过抛出一组 3D Queries 去“查询”并聚合图像特征，从而输出 3D 边界框。</p>
+</li>
+<li>
+<p><strong>核心问题（痛点）：</strong> 在浩瀚的 3D 空间中，随机初始化或静态学习的 3D Queries 就像是“盲人摸象”，搜索效率极低。特别是面对<strong>远距离（Faraway）或极小尺寸</strong>的目标时，3D 特征极度稀疏，3D 检测器经常漏检。但极其矛盾的是，<strong>标准的 2D 目标检测器在同样的图像上，却能非常稳定地框出这些远处的车辆</strong>。</p>
+</li>
+<li>
+<p><strong>研究目的：</strong> 旨在设计一种跨模态的引导机制（QAF2D），直接将 2D 检测的高可靠性无缝转化为 3D Query 的初始锚点，从而让 3D 检测器“赢在起跑线上”。</p>
+</li>
+</ul>
+<hr>
+<h3 id="二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</h3>
+<h4 id="1-核心方法qaf2d-生成框架">1. 核心方法：QAF2D 生成框架</h4>
+<p>这套即插即用的机制将 2D 框“升维”成高质量 3D Query 的过程分为三大步：</p>
+<ul>
+<li>
+<p><strong>2D 检测与主干共享：</strong> 为了不增加太多计算量，论文通过引入少量的 Prompt 参数（提示学习），让 2D 检测头和 3D 检测头共享同一个底层图像骨干网络（Backbone），首先输出高置信度的 2D 边界框及其类别。</p>
+</li>
+<li>
+<p><strong>3D 候选锚点暴涨 (Lifting 2D to 3D)：</strong> 对于每一个检测到的 2D 框，系统会在框内均匀采样多个中心点。接着，结合针对该类别的先验知识（如汽车的大致长宽高区间），为每个中心点强行赋予一系列<strong>深度（Depth）、偏航角（Yaw）和 3D 尺寸（Size）的候选组合</strong>。瞬间，一个扁平的 2D 框膨胀成了几十个潜在的 3D 物理空间框。</p>
+</li>
+<li>
+<p><strong>投影验证去噪 (Projection-based Verification)：</strong> 这批生成的 3D 框显然有很多是荒谬的。系统将这些 3D 候选框重新投影回 2D 图像平面，并计算投影框与原 2D 框的 <strong>IoU（交并比）</strong>。只有 IoU 超过严格阈值的 3D 框，才会被判定为物理合理，进而转化为最终输入给 Transformer 的 3D Queries。</p>
+</li>
+</ul>
+<h4 id="2-关键数据与主要发现">2. 关键数据与主要发现</h4>
+<ul>
+<li>
+<p><strong>全面一致的提升：</strong> 作者将 QAF2D 框架作为插件，无缝接入了 StreamPETR、BEVFormer-small 等主流模型。在权威的 nuScenes 数据集中，它带来了非常显著的性能跃升（例如最高提升了 2.3% 的 NDS 和 2.7% 的 mAP）。</p>
+</li>
+<li>
+<p><strong>破解难点场景：</strong> 可视化结果和具体数据证明，QAF2D 对于解决远距离目标和小尺寸目标（如行人、远处的轿车）的漏检问题有奇效。</p>
+</li>
+</ul>
+<h4 id="3-结论">3. 结论</h4>
+<p>研究证实，在基于 Query 的 3D 检测中，放弃纯粹的 3D 空间盲搜，转而利用 2D 目标检测器作为“先验向导”，不仅能够大幅缩小查询的搜索空间，还能直接借用 2D 视觉极强的鲁棒性，有效突破单目/多视角 3D 检测在远距离感知上的瓶颈。</p>
+<figure><img src="/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/main.jpg" width="100%"><figcaption>
+      <h4>整体框架图</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="三-新颖概念通俗解释">三、 新颖概念通俗解释</h3>
+<ul>
+<li>
+<p><strong>Query Anchors (查询锚点):</strong>
+传统的 3D Query 就像是系统派出的“无头苍蝇”，在 3D 空间中全图随机游走寻找目标。而加上 2D 引导的 Query Anchors，就像是空军（2D 检测器）先在 2D 地图上画了几个绝对有敌人的红圈（2D 框），然后侦察兵直接空降到红圈对应的 3D 坐标区域进行精细搜索。这就叫“指哪打哪”。</p>
+</li>
+<li>
+<p><strong>投影验证 (Projection Verification):</strong>
+想象你在墙上看到了一个手影（真实的 2D 框），你想反推手的真实 3D 姿势。你在脑海中构思出很多种手的姿势（生成 3D 候选锚点），怎么验证哪个是对的？拿手电筒照一下你构思的姿势，看它投在墙上的影子和原本的影子重合度高不高。重合度高的，自然就是最接近真实的 3D 状态。</p>
+</li>
+</ul>
+<hr>
+<h3 id="四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</h3>
+<p><strong>优点：</strong></p>
+<ol>
+<li>
+<p><strong>极其优雅的工程解法：</strong> 完全解耦，不改动 3D 检测网络的核心 Attention 架构。通过主干共享和两阶段训练策略，实现了极高的性价比。</p>
+</li>
+<li>
+<p><strong>逻辑严密的去噪策略：</strong> 纯粹利用“2D-3D-2D 投影的一致性”来过滤候选框，物理逻辑坚实，有效避免了无效 Query 霸占显存。</p>
+</li>
+</ol>
+<p><strong>缺点与局限性：</strong></p>
+<ol>
+<li>
+<p><strong>性能上限被 2D 锁死：</strong> 这是一个典型的级联系统。整个 3D 提升的前提是 2D 检测绝对可靠。如果在恶劣光照或严重遮挡下，2D 框发生漂移或彻底漏检，3D Query 就根本没有机会生成。</p>
+</li>
+<li>
+<p><strong>启发式采样的算力冗余：</strong> 暴力采样深度、角度和尺寸的组合，然后再验证剔除，这种方式在面对极其密集的车流时，依然会带来一笔不可忽视的计算开销。</p>
+</li>
+</ol>
+<p><strong>极具潜力的后续研究方向（破局点）：</strong></p>
+<ol>
+<li>
+<p><strong>多粒度特征恢复与对齐 (Multi-Granularity Feature Restoration and Alignment)：</strong> 目前 QAF2D 仅仅在“几何坐标”级别（生成边界框）进行 2D 到 3D 的引导。在面对被严重截断或遮挡的残缺物体时，几何维度的引导极易失效。后续亟需在网络前端加入多粒度特征修复机制，先利用 2D 语义修复残缺特征图，再进行特征级别的 3D Query 对齐，从而突破极端工况下的检测极限。</p>
+</li>
+<li>
+<p><strong>叠加场景拓扑正则化 (Scene Topological Regularization)：</strong></p>
+</li>
+</ol>
+<p>QAF2D 的投影验证仅考虑了“单个物体”的 2D-3D 投影吻合度。为了提高采样效率和物理准确性，迫切需要引入场景级的拓扑约束。例如，限制生成的 3D 候选锚点必须绝对依附于可行驶路面，且不能与相邻物体的 3D 空间发生不合理的交叉重叠。利用宏观拓扑法则进行正则化，可以提前扼杀掉海量物理违和的候选框。</p>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/result.jpg" width="90%"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+
+<hr>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" data-title="StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors" data-hashtags="2D引导3D,投影验证"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" data-title="StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" data-hashtag="2D引导3D"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" data-title="StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" data-title="StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" data-title="StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors" data-image="cover.jpg"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/" data-title="StreamPETR-QAF2D：Enhancing 3D Object Detection with 2D Detection-Guided Query Anchors" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2fzhaoylee.github.io%2fBlogs_lovelt%2fposts%2fstreampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors%2f&amp;text=StreamPETR-QAF2D%ef%bc%9aEnhancing%203D%20Object%20Detection%20with%202D%20Detection-Guided%20Query%20Anchors" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/Blogs_lovelt/tags/2d%E5%BC%95%E5%AF%BC3d/">2D引导3D</a>,&nbsp;<a href="/Blogs_lovelt/tags/%E6%8A%95%E5%BD%B1%E9%AA%8C%E8%AF%81/">投影验证</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/Blogs_lovelt/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/Blogs_lovelt/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/" class="prev" rel="prev" title="OBMO: One Bounding Box Multiple Objects
+for Monocular 3D Object Detection"><i class="fas fa-angle-left" aria-hidden="true"></i>OBMO: One Bounding Box Multiple Objects
+for Monocular 3D Object Detection</a>
+            <a href="/Blogs_lovelt/posts/lr3d--improving-distant-3d-object-detection-using-2d-box-supervision/" class="next" rel="next" title="LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision">LR3D: Improving Distant 3D Object Detection Using 2D Box Supervision<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/Blogs_lovelt/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.zh.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/mhchem.min.js"></script><script src="/Blogs_lovelt/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/Blogs_lovelt/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/Blogs_lovelt/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/Blogs_lovelt/js/theme.js"></script></body>
+</html>

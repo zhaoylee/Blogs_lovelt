@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding">
+  <meta property="og:description" content="🏛️ 会议/期刊：CVPR / ICCV / ECCV
+📅 发表年份：2026
+💻 开源代码：无
+📄 论文题目：SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding
+一、 背景、研究目的与核心问题 研究背景： 在自动驾驶等领域，3D 目标检测是核心技术。其中，“单目 3D 目标检测”由于仅依赖单张图像，硬件成本极低，备受青睐。然而，传统基于人工神经网络（ANNs）的模型计算量大、能耗极高，给边缘计算设备的电池续航和散热带来了巨大压力。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-15T19:59:10+08:00">
+    <meta property="article:modified_time" content="2026-03-15T19:59:10+08:00">
+    <meta property="article:tag" content="轻量化">
+    <meta property="article:tag" content="跨尺度">
+    <meta property="article:tag" content="门控">
+    <meta property="og:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/cover.jpg">
+  <meta name="twitter:title" content="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：CVPR / ICCV / ECCV
+📅 发表年份：2026
+💻 开源代码：无
+📄 论文题目：SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding
+一、 背景、研究目的与核心问题 研究背景： 在自动驾驶等领域，3D 目标检测是核心技术。其中，“单目 3D 目标检测”由于仅依赖单张图像，硬件成本极低，备受青睐。然而，传统基于人工神经网络（ANNs）的模型计算量大、能耗极高，给边缘计算设备的电池续航和散热带来了巨大压力。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" /><link rel="prev" href="https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" /><link rel="next" href="https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" /><link rel="stylesheet" href="/Blogs_lovelt/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding\/"
+        },"genre": "posts","keywords": "轻量化, 跨尺度, 门控","wordcount":  2119 ,
+        "url": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding\/","datePublished": "2026-03-15T19:59:10+08:00","dateModified": "2026-03-15T19:59:10+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/Blogs_lovelt/"> 主页 </a><a class="menu-item" href="/Blogs_lovelt/categories/"> 分类 </a><a class="menu-item" href="/Blogs_lovelt/tags/"> 标签 </a><a class="menu-item" href="/Blogs_lovelt/posts/"> 文章 </a><a class="menu-item" href="/Blogs_lovelt/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/Blogs_lovelt/" title="">主页</a><a class="menu-item" href="/Blogs_lovelt/categories/" title="">分类</a><a class="menu-item" href="/Blogs_lovelt/tags/" title="">标签</a><a class="menu-item" href="/Blogs_lovelt/posts/" title="">文章</a><a class="menu-item" href="/Blogs_lovelt/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/Blogs_lovelt/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/Blogs_lovelt/categories/centernet-based/"><i class="far fa-folder" aria-hidden="true"></i>CenterNet-Based</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-15">2026-03-15</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 2119 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/cover.jpg"
+        data-srcset="/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/cover.jpg, /Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/cover.jpg 1.5x, /Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/cover.jpg 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/cover.jpg"
+        title="/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/cover.jpg" width="1425" height="898" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</a></li>
+        <li><a href="#二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</a>
+          <ul>
+            <li><a href="#1-研究方法">1. 研究方法</a></li>
+            <li><a href="#2-关键数据与主要发现">2. 关键数据与主要发现</a></li>
+            <li><a href="#3-结论">3. 结论</a></li>
+          </ul>
+        </li>
+        <li><a href="#三-新颖概念通俗解释">三、 新颖概念通俗解释</a></li>
+        <li><a href="#四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：CVPR / ICCV / ECCV<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">无</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2506.07737" target="_blank" rel="noopener noreffer ">SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 在自动驾驶等领域，3D 目标检测是核心技术。其中，“单目 3D 目标检测”由于仅依赖单张图像，硬件成本极低，备受青睐。然而，传统基于人工神经网络（ANNs）的模型计算量大、能耗极高，给边缘计算设备的电池续航和散热带来了巨大压力。</p>
+</li>
+<li>
+<p><strong>研究目的：</strong> 旨在开发一种兼顾“高精度”与“极低功耗”的单目 3D 目标检测架构。</p>
+</li>
+<li>
+<p><strong>核心问题（痛点）：</strong> 脉冲神经网络（SNNs）由于具有事件驱动的特性，功耗极低，是解决能耗问题的完美候选。但是，SNN 使用的是<strong>离散的二值脉冲信号</strong>（0或1），而传统的 ANN 使用的是连续的浮点数。当把 ANN 转换为 SNN 时，这种信号的强行“离散化”会产生严重的<strong>信息丢失（Information Loss）</strong>，导致特征表达能力急剧下降，进而拖累检测精度。</p>
+</li>
+</ul>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/main.jpg" width="100%"><figcaption>
+      <h4>整体框架图</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h3 id="二-研究方法关键数据与结论">二、 研究方法、关键数据与结论</h3>
+<h4 id="1-研究方法">1. 研究方法</h4>
+<p>为了解决上述痛点，作者提出了 <strong>SpikeSMOKE</strong> 架构，这是一种基于经典单阶段无锚框模型（SMOKE）改造而来的全脉冲化网络：</p>
+<ul>
+<li>
+<p><strong>全链路脉冲化：</strong> 将原版 SMOKE 的主干网络（DLA34）、颈部（Neck）和检测头（Head）全部转换为 SNN 范式。具体来说，利用 LIF（Leaky Integrate-and-Fire）神经元的脉冲发射率来模拟原有的 ReLU 激活函数，构建了 Spike-DLA34。</p>
+</li>
+<li>
+<p><strong>跨尺度门控编码机制（CSGC）：</strong> 这是本文的<strong>核心创新点</strong>。为了弥补离散信号带来的信息丢失，作者受生物神经元突触滤波机制的启发，设计了 CSGC。该机制融合了跨尺度的注意力特征，并加入了一个门控过滤单元，用于在信息传递时进行动态筛选和增强。</p>
+</li>
+<li>
+<p><strong>轻量化设计：</strong> 作者还提出了一种轻量级的残差块，构建了 SpikeSMOKE-L 版本，进一步压缩模型。</p>
+</li>
+</ul>
+<figure><img src="/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/result.jpg" width="90%"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+
+<h4 id="2-关键数据与主要发现">2. 关键数据与主要发现</h4>
+<ul>
+<li>
+<p><strong>极致的能效比：</strong> 在 KITTI 自动驾驶数据集上，与传统的 ANN 版本相比，SpikeSMOKE 在“Hard”难度类别下，<strong>能耗惊人地降低了 72.2%，而检测性能仅仅下降了 4%</strong>。</p>
+</li>
+<li>
+<p><strong>CSGC 的显著增益：</strong> 引入 CSGC 机制后，SpikeSMOKE 在 KITTI 数据集上的表现大幅提升，在 Easy、Moderate 和 Hard 难度下分别提升了 2.82、3.2 和 3.17 个 AP（平均精度）。</p>
+</li>
+<li>
+<p><strong>极致轻量化：</strong> 轻量级版本 SpikeSMOKE-L 相比原版网络，<strong>参数量减少了 3 倍，计算量骤降了 10 倍</strong>。</p>
+</li>
+<li>
+<p><strong>泛化能力：</strong> CSGC 机制不仅在 3D 检测中有效，在 CIFAR-10/100 图像分类任务上也验证了其有效性。</p>
+</li>
+</ul>
+<hr>
+<h4 id="3-结论">3. 结论</h4>
+<p>研究证明，将低功耗的 SNN 应用于复杂的单目 3D 目标检测任务是完全可行的。通过引入仿生的跨尺度门控机制（CSGC），可以有效弥合离散脉冲信号带来的特征表达鸿沟，在几乎不损失精度的前提下，实现了颠覆性的功耗缩减。</p>
+<hr>
+<h3 id="三-新颖概念通俗解释">三、 新颖概念通俗解释</h3>
+<p>为了更好理解这篇论文，我们可以这样拆解其中的两个硬核概念：</p>
+<ul>
+<li>
+<p><strong>脉冲神经网络 (Spiking Neural Networks, SNNs)：</strong> 传统的神经网络（ANN）传递信息就像是“调光开关”，亮度是连续变化的（比如 0.82、0.45）。而 SNN 模仿了真实人类大脑的工作方式，它传递信息更像是“按电灯开关”（只有开和关，也就是 1 和 0 的脉冲）。只有当神经元累积的刺激达到一定阈值时，它才会“发射”一个脉冲。因为大部分时间神经元都处于“静默”状态，只有需要时才工作（事件驱动），所以它极其省电。</p>
+</li>
+<li>
+<p><strong>跨尺度门控编码 (Cross-Scale Gated Coding, CSGC)：</strong></p>
+<p>因为 SNN 把丰富连续的图像信息变成了“0和1”，就像把高清电影变成了像素风马赛克，必然会丢掉很多细节。CSGC 就像是一个带有“智能滤镜的保安系统”。“跨尺度”意味着它同时查看图像的大轮廓和小细节；“门控编码”则是模仿大脑突触，评估这些 0和1 的脉冲到底重不重要。重要的脉冲放行，无意义的噪声阻挡，从而把被“马赛克化”的信息重新提炼得清晰锐利。</p>
+</li>
+</ul>
+<hr>
+<h3 id="四-优缺点客观评价与后续研究方向">四、 优缺点客观评价与后续研究方向</h3>
+<p><strong>优点：</strong></p>
+<ol>
+<li>
+<p><strong>直击行业痛点：</strong> 敏锐地抓住了车载计算平台“算力与功耗”的矛盾，从底层网络架构（SNN）出发解决问题，而非单纯的软件压缩。</p>
+</li>
+<li>
+<p><strong>创新性强：</strong> 将生物突触机制（CSGC）巧妙引入三维视觉任务，优雅地解决了 SNN 中最棘手的“离散信号特征表达弱”的难题。</p>
+</li>
+<li>
+<p><strong>极具性价比：</strong> 牺牲极小精度（4%）换取巨大能耗收益（72%），在工程落地（特别是算力受限的无人机、小型机器人上）极具吸引力。</p>
+</li>
+</ol>
+<p><strong>缺点与局限性：</strong></p>
+<ol>
+<li>
+<p><strong>绝对精度的天花板：</strong> 尽管只下降了 4%，但在自动驾驶这种对安全容错率为零的场景中，任何精度的倒退都需要极为谨慎的权衡。</p>
+</li>
+<li>
+<p><strong>基线模型较老：</strong> 论文基于的 SMOKE 架构虽然经典，但在单目 3D 检测领域已不算最前沿（例如目前许多基于 Transformer 或 BEV 视角的模型表现更好），在更先进架构上 SNN 能否保持这种优势尚待验证。</p>
+</li>
+<li>
+<p><strong>硬件验证缺失：</strong> 论文的能耗数据大多基于理论计算或软件模拟，SNN 的真正威力需要部署在专用的神经形态芯片（如 Intel Loihi）上才能完美释放，这方面缺乏实机测试。</p>
+</li>
+</ol>
+<p><strong>可能的后续研究方向：</strong></p>
+<ul>
+<li>
+<p><strong>结合更先进的 3D 检测范式：</strong> 探索如何将 Transformer 或多视角（Multi-view）单目 3D 检测技术进行“脉冲化”。</p>
+</li>
+<li>
+<p><strong>软硬协同优化：</strong> 将 SpikeSMOKE 部署至真实的神经形态硬件（Neuromorphic Hardware）上，进行端到端的延迟与实测功耗分析。</p>
+</li>
+<li>
+<p><strong>动态环境下的鲁棒性研究：</strong> SNN 在处理高动态模糊、恶劣天气等连续时间戳数据时具有天然优势，结合事件相机（Event Camera）数据进行多模态 3D 检测将是极具潜力的方向。</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" data-title="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding" data-hashtags="轻量化,跨尺度,门控"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" data-title="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" data-hashtag="轻量化"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" data-title="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" data-title="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" data-title="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding" data-image="cover.jpg"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/" data-title="SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2fzhaoylee.github.io%2fBlogs_lovelt%2fposts%2fspikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding%2f&amp;text=SpikeSMOKE%3a%20Spiking%20Neural%20Networks%20for%20Monocular%203D%20Object%20Detection%20with%20Cross-Scale%20Gated%20Coding" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/Blogs_lovelt/tags/%E8%BD%BB%E9%87%8F%E5%8C%96/">轻量化</a>,&nbsp;<a href="/Blogs_lovelt/tags/%E8%B7%A8%E5%B0%BA%E5%BA%A6/">跨尺度</a>,&nbsp;<a href="/Blogs_lovelt/tags/%E9%97%A8%E6%8E%A7/">门控</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/Blogs_lovelt/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/" class="prev" rel="prev" title="SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection"><i class="fas fa-angle-left" aria-hidden="true"></i>SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</a>
+            <a href="/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/" class="next" rel="next" title="Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection">Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/Blogs_lovelt/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.zh.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/mhchem.min.js"></script><script src="/Blogs_lovelt/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/Blogs_lovelt/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/Blogs_lovelt/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/Blogs_lovelt/js/theme.js"></script></body>
+</html>

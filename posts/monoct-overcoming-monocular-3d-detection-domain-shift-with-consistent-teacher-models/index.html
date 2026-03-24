@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/">
+  <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
+  <meta property="og:title" content="MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models">
+  <meta property="og:description" content="🏛️ 会议/期刊：ICRA
+📅 发表年份：2025
+💻 开源代码：GitHub 链接
+📄 论文题目：MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models
+0. 一句话总结 (TL;DR) (这篇论文用什么方法，解决了什么问题，达到了什么效果)
+MonoCT 提出了一种基于一致性教师模型（Consistent Teacher）的半监督自适应框架，通过在目标域（Target Domain）引入伪标签一致性约束，有效解决了单目 3D 检测在不同数据集间迁移时的深度估计偏差问题。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-12T10:25:13+08:00">
+    <meta property="article:modified_time" content="2026-03-12T10:25:13+08:00">
+    <meta property="article:tag" content="车载、路边、无人机">
+    <meta property="article:tag" content="额外的模型">
+    <meta property="article:tag" content="多深度集成">
+    <meta property="article:tag" content="无监督">
+    <meta property="og:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/cover.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/cover.jpg">
+  <meta name="twitter:title" content="MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models">
+  <meta name="twitter:description" content="🏛️ 会议/期刊：ICRA
+📅 发表年份：2025
+💻 开源代码：GitHub 链接
+📄 论文题目：MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models
+0. 一句话总结 (TL;DR) (这篇论文用什么方法，解决了什么问题，达到了什么效果)
+MonoCT 提出了一种基于一致性教师模型（Consistent Teacher）的半监督自适应框架，通过在目标域（Target Domain）引入伪标签一致性约束，有效解决了单目 3D 检测在不同数据集间迁移时的深度估计偏差问题。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" /><link rel="next" href="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" /><link rel="stylesheet" href="/Blogs_lovelt/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models\/"
+        },"genre": "posts","keywords": "车载、路边、无人机, 额外的模型, 多深度集成, 无监督","wordcount":  911 ,
+        "url": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models\/","datePublished": "2026-03-12T10:25:13+08:00","dateModified": "2026-03-12T10:25:13+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhaoylee"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="normal" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'light';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/Blogs_lovelt/"> 主页 </a><a class="menu-item" href="/Blogs_lovelt/categories/"> 分类 </a><a class="menu-item" href="/Blogs_lovelt/tags/"> 标签 </a><a class="menu-item" href="/Blogs_lovelt/posts/"> 文章 </a><a class="menu-item" href="/Blogs_lovelt/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/Blogs_lovelt/" title="Zhaoylee&#39;s Blogs"><img
+        class="lazyload logo"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/images/avatar256.png"
+        data-srcset="/Blogs_lovelt/images/avatar256.png, /Blogs_lovelt/images/avatar256.png 1.5x, /Blogs_lovelt/images/avatar256.png 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/images/avatar256.png"
+        title="/Blogs_lovelt/images/avatar256.png" />Zhaoylee&#39;s Blogs</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/Blogs_lovelt/" title="">主页</a><a class="menu-item" href="/Blogs_lovelt/categories/" title="">分类</a><a class="menu-item" href="/Blogs_lovelt/tags/" title="">标签</a><a class="menu-item" href="/Blogs_lovelt/posts/" title="">文章</a><a class="menu-item" href="/Blogs_lovelt/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/Blogs_lovelt/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/Blogs_lovelt/categories/centernet-based/"><i class="far fa-folder" aria-hidden="true"></i>CenterNet-Based</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-12">2026-03-12</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 911 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/Blogs_lovelt/svg/loading.min.svg"
+        data-src="/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/cover.jpg"
+        data-srcset="/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/cover.jpg, /Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/cover.jpg 1.5x, /Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/cover.jpg 2x"
+        data-sizes="auto"
+        alt="/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/cover.jpg"
+        title="/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/cover.jpg" width="543" height="543" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0-一句话总结-tldr">0. 一句话总结 (TL;DR)</a></li>
+    <li><a href="#1-动机与问题-motivation">1. 动机与问题 (Motivation)</a></li>
+    <li><a href="#2-核心方法-method">2. 核心方法 (Method)</a></li>
+    <li><a href="#3-实验与启发-experiments--takeaways">3. 实验与启发 (Experiments &amp; Takeaways)</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：ICRA<br>
+<strong>📅 发表年份</strong>：2025<br>
+<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">GitHub 链接</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/abs/2503.13743" target="_blank" rel="noopener noreffer ">MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models</a></p>
+</blockquote>
+<hr>
+<h2 id="0-一句话总结-tldr">0. 一句话总结 (TL;DR)</h2>
+<p><em>(这篇论文用什么方法，解决了什么问题，达到了什么效果)</em><br>
+MonoCT 提出了一种基于<strong>一致性教师模型（Consistent Teacher）的</strong>半监督自适应框架，通过在目标域（Target Domain）引入伪标签一致性约束，有效解决了单目 3D 检测在不同数据集间迁移时的深度估计偏差问题。</p>
+<hr>
+<h2 id="1-动机与问题-motivation">1. 动机与问题 (Motivation)</h2>
+<p><em>(现有的单目3D检测有什么痛点？)</em></p>
+<ul>
+<li>
+<p><strong>痛点</strong>：单目 3D 检测高度依赖相机的内参和场景布局。当模型从一个城市（源域）迁移到另一个城市（目标域）时，由于路面坡度、相机高度、物体尺寸分布的差异，会导致 3D 属性（尤其是深度）预估出现巨大偏差。</p>
+</li>
+<li>
+<p><strong>局限</strong>：现有的 UDA（非监督领域自适应）方法多关注 2D 特征对齐，但在 3D 空间中，微小的像素偏移就会导致巨大的 3D 框漂移。</p>
+</li>
+</ul>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/main.jpg"><figcaption>
+      <h4> MonoCT 整体框架图</h4>
+    </figcaption>
+</figure>
+
+<hr>
+<h2 id="2-核心方法-method">2. 核心方法 (Method)</h2>
+<p><em>(具体怎么做的？比如额外辅助模型是怎么引入的？数据增强的具体流程是什么？)</em><br>
+MonoCT 的核心在于“教师-学生（Teacher-Student）”架构的升级版：</p>
+<ol>
+<li>
+<p>Consistent Teacher (CT) 模块：</p>
+<ul>
+<li>
+<p>为了防止教师模型产生错误的伪标签（Pseudo-labels），MonoCT 引入了一致性正则化。</p>
+</li>
+<li>
+<p>它要求模型在面对同一个物体的不同增强版本（如水平翻转、尺度缩放）时，输出的 3D 属性必须保持几何上的一致性。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>3D 几何约束头 (Geometry-aware Head)：</p>
+<ul>
+<li>模型利用 2D/3D 几何投影关系（Height-to-Depth）作为辅助，通过已知的相机内参反向校验深度预测的合理性。</li>
+</ul>
+</li>
+<li>
+<p>自监督深度增强：</p>
+<ul>
+<li>在目标域（无标注数据）上，通过对比教师和学生模型预测的物体中心点偏移，来精细化调整物体在 BEV（鸟瞰图）下的位置。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="3-实验与启发-experiments--takeaways">3. 实验与启发 (Experiments &amp; Takeaways)</h2>
+<p><em>(在 KITTI 上涨点了多少？对我自己的研究有什么可借鉴的？)</em></p>
+<ul>
+<li>
+<p><strong>效果</strong>：在 KITTI → Waymo 的迁移实验中表现极其强悍。尤其是在跨相机参数的情况下，精度提升显著。</p>
+</li>
+<li>
+<p><strong>启发</strong>：</p>
+<ul>
+<li>
+<p>深度是关键：单目迁移的核心不是对齐特征图，而是校准深度。</p>
+</li>
+<li>
+<p>伪标签质量：在你的研究中（如 MonoMGS），如果也面临数据不足，可以借鉴这种“一致性教师”的思想，利用未标注数据生成的伪标签进行半监督预训练。</p>
+</li>
+<li>
+<p>BEV 投影：论文再次证明了在 BEV 空间进行约束比在图像平面约束更有效。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<figure><img src="/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/result.jpg"><figcaption>
+      <h4>结果对比</h4>
+    </figcaption>
+</figure>
+
+<hr>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-12</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" data-title="MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models" data-hashtags="车载、路边、无人机,额外的模型,多深度集成,无监督"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" data-title="MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" data-hashtag="车载、路边、无人机"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" data-title="MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" data-title="MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" data-title="MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models" data-image="cover.jpg"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/monoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models/" data-title="MonoCT: Overcoming Monocular 3D Detection Domain Shift with Consistent Teacher Models" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2fzhaoylee.github.io%2fBlogs_lovelt%2fposts%2fmonoct-overcoming-monocular-3d-detection-domain-shift-with-consistent-teacher-models%2f&amp;text=MonoCT%3a%20Overcoming%20Monocular%203D%20Detection%20Domain%20Shift%20with%20Consistent%20Teacher%20Models" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href=""></a>,&nbsp;<a href="/Blogs_lovelt/tags/%E9%A2%9D%E5%A4%96%E7%9A%84%E6%A8%A1%E5%9E%8B/">额外的模型</a>,&nbsp;<a href="/Blogs_lovelt/tags/%E5%A4%9A%E6%B7%B1%E5%BA%A6%E9%9B%86%E6%88%90/">多深度集成</a>,&nbsp;<a href="/Blogs_lovelt/tags/%E6%97%A0%E7%9B%91%E7%9D%A3/">无监督</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/Blogs_lovelt/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" class="next" rel="next" title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION">DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/Blogs_lovelt/" target="_blank">zhaoylee</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link rel="stylesheet" href="css/custom.css"><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/Blogs_lovelt/lib/lunr/lunr.zh.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/mhchem.min.js"></script><script src="/Blogs_lovelt/js/custom.js"></script><script>window.config={"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/Blogs_lovelt/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/Blogs_lovelt/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/Blogs_lovelt/js/theme.js"></script></body>
+</html>
