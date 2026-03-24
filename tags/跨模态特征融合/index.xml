@@ -1,23 +1,19 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>跨模态特征融合 - 标签 - Zhaoylee&#39;s Blogs</title>
-        <link>http://localhost:3334/tags/%E8%B7%A8%E6%A8%A1%E6%80%81%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/</link>
-        <description>跨模态特征融合 - 标签 - Zhaoylee&#39;s Blogs</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 21:14:36 &#43;0800</lastBuildDate><atom:link href="http://localhost:3334/tags/%E8%B7%A8%E6%A8%A1%E6%80%81%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/" rel="self" type="application/rss+xml" /><item>
-    <title>MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver</title>
-    <link>http://localhost:3334/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/</link>
-    <pubDate>Sun, 15 Mar 2026 21:14:36 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>http://localhost:3334/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/</guid>
-    <description><![CDATA[<hr>
-<blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：ICCV<br>
-<strong>📅 发表年份</strong>：2023<br>
-<strong>💻 开源代码</strong>：<a href="https://github.com/Xianpeng919/monoxiver" target="_blank" rel="noopener noreffer ">Xianpeng919/monoxiver (ICCV'23)</a><br>
-<strong>📄 论文题目</strong>：<a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Liu_Monocular_3D_Object_Detection_with_Bounding_Box_Denoising_in_3D_ICCV_2023_paper.pdf" target="_blank" rel="noopener noreffer ">Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver</a></p>
-</blockquote>
-<hr>
-<p>这篇发表于 ICCV 2023 的论文 <strong>《Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver》(简称 MonoXiver)</strong>，提供了一个非常经典且极具工程价值的“自上而下（Top-down）”纠错思路。它并没有试图发明一种全新的主干网络，而是设计了一个强大的“插件”，专门用来拯救那些定位不准的预测框。</p>]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>跨模态特征融合 on Zhaoylee&#39;s Blogs</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/tags/%E8%B7%A8%E6%A8%A1%E6%80%81%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/</link>
+    <description>Recent content in 跨模态特征融合 on Zhaoylee&#39;s Blogs</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 15 Mar 2026 21:14:36 +0800</lastBuildDate>
+    <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E8%B7%A8%E6%A8%A1%E6%80%81%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver</title>
+      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/</link>
+      <pubDate>Sun, 15 Mar 2026 21:14:36 +0800</pubDate>
+      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/</guid>
+      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：ICCV&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2023&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;https://github.com/Xianpeng919/monoxiver&#34;&gt;Xianpeng919/monoxiver (ICCV&#39;23)&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://openaccess.thecvf.com/content/ICCV2023/papers/Liu_Monocular_3D_Object_Detection_with_Bounding_Box_Denoising_in_3D_ICCV_2023_paper.pdf&#34;&gt;Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;这篇发表于 ICCV 2023 的论文 &lt;strong&gt;《Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver》(简称 MonoXiver)&lt;/strong&gt;，提供了一个非常经典且极具工程价值的“自上而下（Top-down）”纠错思路。它并没有试图发明一种全新的主干网络，而是设计了一个强大的“插件”，专门用来拯救那些定位不准的预测框。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

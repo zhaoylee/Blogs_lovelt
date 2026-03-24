@@ -1,26 +1,19 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>轻量化 - 标签 - Zhaoylee&#39;s Blogs</title>
-        <link>http://localhost:3334/tags/%E8%BD%BB%E9%87%8F%E5%8C%96/</link>
-        <description>轻量化 - 标签 - Zhaoylee&#39;s Blogs</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 19:59:10 &#43;0800</lastBuildDate><atom:link href="http://localhost:3334/tags/%E8%BD%BB%E9%87%8F%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
-    <title>SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding</title>
-    <link>http://localhost:3334/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/</link>
-    <pubDate>Sun, 15 Mar 2026 19:59:10 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>http://localhost:3334/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/</guid>
-    <description><![CDATA[<hr>
-<blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：CVPR / ICCV / ECCV<br>
-<strong>📅 发表年份</strong>：2026<br>
-<strong>💻 开源代码</strong>：<a href="%e5%a1%ab%e5%86%99%e4%bd%a0%e7%9a%84URL" rel="">无</a><br>
-<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2506.07737" target="_blank" rel="noopener noreffer ">SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding</a></p>
-</blockquote>
-<hr>
-<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
-<ul>
-<li>
-<p><strong>研究背景：</strong> 在自动驾驶等领域，3D 目标检测是核心技术。其中，“单目 3D 目标检测”由于仅依赖单张图像，硬件成本极低，备受青睐。然而，传统基于人工神经网络（ANNs）的模型计算量大、能耗极高，给边缘计算设备的电池续航和散热带来了巨大压力。</p>]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>轻量化 on Zhaoylee&#39;s Blogs</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/tags/%E8%BD%BB%E9%87%8F%E5%8C%96/</link>
+    <description>Recent content in 轻量化 on Zhaoylee&#39;s Blogs</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 15 Mar 2026 19:59:10 +0800</lastBuildDate>
+    <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E8%BD%BB%E9%87%8F%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding</title>
+      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/</link>
+      <pubDate>Sun, 15 Mar 2026 19:59:10 +0800</pubDate>
+      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/</guid>
+      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：CVPR / ICCV / ECCV&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2026&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;%E5%A1%AB%E5%86%99%E4%BD%A0%E7%9A%84URL&#34;&gt;无&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2506.07737&#34;&gt;SpikeSMOKE: Spiking Neural Networks for Monocular 3D Object Detection with Cross-Scale Gated Coding&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;一-背景研究目的与核心问题&#34;&gt;一、 背景、研究目的与核心问题&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;研究背景：&lt;/strong&gt; 在自动驾驶等领域，3D 目标检测是核心技术。其中，“单目 3D 目标检测”由于仅依赖单张图像，硬件成本极低，备受青睐。然而，传统基于人工神经网络（ANNs）的模型计算量大、能耗极高，给边缘计算设备的电池续航和散热带来了巨大压力。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

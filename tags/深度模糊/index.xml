@@ -1,34 +1,27 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>深度模糊 - 标签 - Zhaoylee&#39;s Blogs</title>
-        <link>http://localhost:3334/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E7%B3%8A/</link>
-        <description>深度模糊 - 标签 - Zhaoylee&#39;s Blogs</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Mar 2026 10:48:33 &#43;0800</lastBuildDate><atom:link href="http://localhost:3334/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E7%B3%8A/" rel="self" type="application/rss+xml" /><item>
-    <title>OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection</title>
-    <link>http://localhost:3334/posts/new_post/</link>
-    <pubDate>Tue, 24 Mar 2026 10:48:33 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>http://localhost:3334/posts/new_post/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/cover.jpg" referrerpolicy="no-referrer">
-            </div>简述:一个框对应多个物体位置，通过施加软标签，帮助网络训练稳定，从而提升一定的性能;]]></description>
-</item>
-<item>
-    <title>OBMO: One Bounding Box Multiple Objects
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>深度模糊 on Zhaoylee&#39;s Blogs</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E7%B3%8A/</link>
+    <description>Recent content in 深度模糊 on Zhaoylee&#39;s Blogs</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 24 Mar 2026 10:48:33 +0800</lastBuildDate>
+    <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E7%B3%8A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection</title>
+      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/new_post/</link>
+      <pubDate>Tue, 24 Mar 2026 10:48:33 +0800</pubDate>
+      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/new_post/</guid>
+      <description>简述:一个框对应多个物体位置，通过施加软标签，帮助网络训练稳定，从而提升一定的性能;</description>
+    </item>
+    <item>
+      <title>OBMO: One Bounding Box Multiple Objects
 for Monocular 3D Object Detection</title>
-    <link>http://localhost:3334/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</link>
-    <pubDate>Sun, 15 Mar 2026 21:59:12 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>http://localhost:3334/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</guid>
-    <description><![CDATA[<hr>
-<blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：IEEE TIP<br>
-<strong>📅 发表年份</strong>：2023<br>
-<strong>💻 开源代码</strong>：<a href="https://github.com/mrsempress/OBMO_patchnet" target="_blank" rel="noopener noreffer ">mrsempress/OBMO_patchnet</a><br>
-<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2212.10049" target="_blank" rel="noopener noreffer ">OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection</a></p>
-</blockquote>
-<hr>
-<p>这篇发表于 IEEE TIP (2023) 的经典论文 <strong>《OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection》</strong> 切入点非常犀利。它没有在复杂的网络主干上做文章，而是直击单目 3D 目标检测在“底层数学物理逻辑”上的痛点，提出了一种极其优雅的“即插即用（Plug-and-play）”训练策略。</p>]]></description>
-</item>
-</channel>
+      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</link>
+      <pubDate>Sun, 15 Mar 2026 21:59:12 +0800</pubDate>
+      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</guid>
+      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：IEEE TIP&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2023&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;https://github.com/mrsempress/OBMO_patchnet&#34;&gt;mrsempress/OBMO_patchnet&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2212.10049&#34;&gt;OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;这篇发表于 IEEE TIP (2023) 的经典论文 &lt;strong&gt;《OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection》&lt;/strong&gt; 切入点非常犀利。它没有在复杂的网络主干上做文章，而是直击单目 3D 目标检测在“底层数学物理逻辑”上的痛点，提出了一种极其优雅的“即插即用（Plug-and-play）”训练策略。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

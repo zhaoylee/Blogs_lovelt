@@ -1,26 +1,19 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>开放集M3OD - 分类 - Zhaoylee&#39;s Blogs</title>
-        <link>http://localhost:3334/categories/%E5%BC%80%E6%94%BE%E9%9B%86m3od/</link>
-        <description>开放集M3OD - 分类 - Zhaoylee&#39;s Blogs</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 21:14:37 &#43;0800</lastBuildDate><atom:link href="http://localhost:3334/categories/%E5%BC%80%E6%94%BE%E9%9B%86m3od/" rel="self" type="application/rss+xml" /><item>
-    <title>Open Vocabulary Monocular 3D Object Detection</title>
-    <link>http://localhost:3334/posts/open-vocabulary-monocular-3d-object-detection/</link>
-    <pubDate>Sun, 15 Mar 2026 21:14:37 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>http://localhost:3334/posts/open-vocabulary-monocular-3d-object-detection/</guid>
-    <description><![CDATA[<hr>
-<blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：3DV<br>
-<strong>📅 发表年份</strong>：2026<br>
-<strong>💻 开源代码</strong>：<a href="https://github.com/UVA-Computer-Vision-Lab/ovmono3d" target="_blank" rel="noopener noreffer ">UVA-Computer-Vision-Lab/ovmono3d</a><br>
-<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2411.16833" target="_blank" rel="noopener noreffer ">Open Vocabulary Monocular 3D Object Detection</a></p>
-</blockquote>
-<hr>
-<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
-<ul>
-<li>
-<p><strong>研究背景：</strong> 传统的单目 3D 目标检测（M3OD）模型都属于“闭集（Closed-set）”学习。这意味着模型只能检测训练集中预先定义好的那几种类别（例如 KITTI 数据集里的车、人、自行车）。但在真实的自动驾驶或机器人场景中，会遇到无数的长尾目标（如遗落的轮胎、奇形怪状的施工路障、甚至是一只突然窜出的动物）。</p>]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开放集M3OD on Zhaoylee&#39;s Blogs</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/categories/%E5%BC%80%E6%94%BE%E9%9B%86m3od/</link>
+    <description>Recent content in 开放集M3OD on Zhaoylee&#39;s Blogs</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 15 Mar 2026 21:14:37 +0800</lastBuildDate>
+    <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/categories/%E5%BC%80%E6%94%BE%E9%9B%86m3od/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Open Vocabulary Monocular 3D Object Detection</title>
+      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/open-vocabulary-monocular-3d-object-detection/</link>
+      <pubDate>Sun, 15 Mar 2026 21:14:37 +0800</pubDate>
+      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/open-vocabulary-monocular-3d-object-detection/</guid>
+      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：3DV&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2026&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;https://github.com/UVA-Computer-Vision-Lab/ovmono3d&#34;&gt;UVA-Computer-Vision-Lab/ovmono3d&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2411.16833&#34;&gt;Open Vocabulary Monocular 3D Object Detection&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;一-背景研究目的与核心问题&#34;&gt;一、 背景、研究目的与核心问题&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;研究背景：&lt;/strong&gt; 传统的单目 3D 目标检测（M3OD）模型都属于“闭集（Closed-set）”学习。这意味着模型只能检测训练集中预先定义好的那几种类别（例如 KITTI 数据集里的车、人、自行车）。但在真实的自动驾驶或机器人场景中，会遇到无数的长尾目标（如遗落的轮胎、奇形怪状的施工路障、甚至是一只突然窜出的动物）。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>
