@@ -1,44 +1,26 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>3D-2D投影对齐 - 标签 - Zhaoylee&#39;s Blogs</title>
-        <link>http://localhost:1683/Blogs_lovelt/tags/3d-2d%E6%8A%95%E5%BD%B1%E5%AF%B9%E9%BD%90/</link>
-        <description>3D-2D投影对齐 - 标签 - Zhaoylee&#39;s Blogs</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 16 Mar 2026 09:12:18 &#43;0800</lastBuildDate><atom:link href="http://localhost:1683/Blogs_lovelt/tags/3d-2d%E6%8A%95%E5%BD%B1%E5%AF%B9%E9%BD%90/" rel="self" type="application/rss+xml" /><item>
-    <title>OCM3D: Object-Centric Monocular 3D Object Detection</title>
-    <link>http://localhost:1683/Blogs_lovelt/posts/ocm3d--object-centric-monocular-3d-object-detection/</link>
-    <pubDate>Mon, 16 Mar 2026 09:12:18 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>http://localhost:1683/Blogs_lovelt/posts/ocm3d--object-centric-monocular-3d-object-detection/</guid>
-    <description><![CDATA[<hr>
-<blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：arxiv<br>
-<strong>📅 发表年份</strong>：2021<br>
-<strong>💻 开源代码</strong>：<a href="https://github.com/mrsempress/OBMO_GUPNet/blob/main/tools/offline_OBMO.py" target="_blank" rel="noopener noreffer ">OBMO_GUPNet</a><br>
-<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2104.06041" target="_blank" rel="noopener noreffer ">OCM3D: Object-Centric Monocular 3D Object Detection</a></p>
-</blockquote>
-<hr>
-<h3 id="1-文献背景研究目的与核心问题">1. 文献背景、研究目的与核心问题</h3>
-<ul>
-<li>
-<p><strong>研究背景</strong>：单目 3D 目标检测（Monocular 3D Object Detection）是一个高度病态（ill-posed）的问题。主流方法通常依赖纯图像或将其转化为伪激光雷达（Pseudo-LiDAR）点云。然而，前者难以捕捉像素间的 3D 空间几何关系，后者则受困于单目深度估计带来的巨大点云噪声。</p>]]></description>
-</item>
-<item>
-    <title>SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</title>
-    <link>http://localhost:1683/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</link>
-    <pubDate>Sun, 15 Mar 2026 19:38:47 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>http://localhost:1683/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</guid>
-    <description><![CDATA[<hr>
-<blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：CVPR / ICCV / ECCV<br>
-<strong>📅 发表年份</strong>：2026<br>
-<strong>💻 开源代码</strong>：<a href="https://github.com/WYFDUT/SPAN" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
-<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2511.06702" target="_blank" rel="noopener noreffer ">SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</a></p>
-</blockquote>
-<hr>
-<h2 id="1-文献背景与研究动机">1. 文献背景与研究动机</h2>
-<h2 id="背景与现状">背景与现状</h2>
-<p>单目3D目标检测（Monocular 3D Object Detection）是自动驾驶和机器人视觉中的核心任务，旨在仅通过单张RGB图像预测物体的3D边界框。</p>]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3D-2D投影对齐 on Zhaoylee&#39;s Blogs</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/tags/3d-2d%E6%8A%95%E5%BD%B1%E5%AF%B9%E9%BD%90/</link>
+    <description>Recent content in 3D-2D投影对齐 on Zhaoylee&#39;s Blogs</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 16 Mar 2026 09:12:18 +0800</lastBuildDate>
+    <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/3d-2d%E6%8A%95%E5%BD%B1%E5%AF%B9%E9%BD%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OCM3D: Object-Centric Monocular 3D Object Detection</title>
+      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/ocm3d--object-centric-monocular-3d-object-detection/</link>
+      <pubDate>Mon, 16 Mar 2026 09:12:18 +0800</pubDate>
+      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/ocm3d--object-centric-monocular-3d-object-detection/</guid>
+      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：arxiv&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2021&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;https://github.com/mrsempress/OBMO_GUPNet/blob/main/tools/offline_OBMO.py&#34;&gt;OBMO_GUPNet&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2104.06041&#34;&gt;OCM3D: Object-Centric Monocular 3D Object Detection&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;1-文献背景研究目的与核心问题&#34;&gt;1. 文献背景、研究目的与核心问题&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;研究背景&lt;/strong&gt;：单目 3D 目标检测（Monocular 3D Object Detection）是一个高度病态（ill-posed）的问题。主流方法通常依赖纯图像或将其转化为伪激光雷达（Pseudo-LiDAR）点云。然而，前者难以捕捉像素间的 3D 空间几何关系，后者则受困于单目深度估计带来的巨大点云噪声。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection</title>
+      <link>https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</link>
+      <pubDate>Sun, 15 Mar 2026 19:38:47 +0800</pubDate>
+      <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/span--spatial-projection-alignment-for-monocular-3d-object-detection/</guid>
+      <description>&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;🏛️ 会议/期刊&lt;/strong&gt;：CVPR / ICCV / ECCV&lt;br&gt;&#xA;&lt;strong&gt;📅 发表年份&lt;/strong&gt;：2026&lt;br&gt;&#xA;&lt;strong&gt;💻 开源代码&lt;/strong&gt;：&lt;a href=&#34;https://github.com/WYFDUT/SPAN&#34;&gt;GitHub 链接&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;📄 论文题目&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/pdf/2511.06702&#34;&gt;SPAN: Spatial-Projection Alignment for Monocular 3D Object Detection&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-文献背景与研究动机&#34;&gt;1. 文献背景与研究动机&lt;/h2&gt;&#xA;&lt;h2 id=&#34;背景与现状&#34;&gt;背景与现状&lt;/h2&gt;&#xA;&lt;p&gt;单目3D目标检测（Monocular 3D Object Detection）是自动驾驶和机器人视觉中的核心任务，旨在仅通过单张RGB图像预测物体的3D边界框。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>
