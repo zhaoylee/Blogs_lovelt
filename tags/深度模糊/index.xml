@@ -3,7 +3,17 @@
         <title>深度模糊 - 标签 - Zhaoylee&#39;s Blogs</title>
         <link>https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E7%B3%8A/</link>
         <description>深度模糊 - 标签 - Zhaoylee&#39;s Blogs</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 21:59:12 &#43;0800</lastBuildDate><atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E7%B3%8A/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Mar 2026 10:48:33 &#43;0800</lastBuildDate><atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E7%B3%8A/" rel="self" type="application/rss+xml" /><item>
+    <title>OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/obmo-one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</link>
+    <pubDate>Tue, 24 Mar 2026 10:48:33 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/obmo-one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/Blogs_lovelt/cover.jpg" referrerpolicy="no-referrer">
+            </div>简述:一个框对应多个物体位置，通过施加软标签，帮助网络训练稳定，从而提升一定的性能;]]></description>
+</item>
+<item>
     <title>OBMO: One Bounding Box Multiple Objects
 for Monocular 3D Object Detection</title>
     <link>https://zhaoylee.github.io/Blogs_lovelt/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</link>
