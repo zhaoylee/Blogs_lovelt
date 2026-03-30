@@ -7,11 +7,7 @@
         <title>DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION - Zhaoylee&#39;s Blogs</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/">
   <meta property="og:site_name" content="Zhaoylee&#39;s Blogs">
   <meta property="og:title" content="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION">
-  <meta property="og:description" content="🏛️ 会议/期刊：ICLR
-📅 发表年份：2022
-💻 开源代码：GitHub 链接
-📄 论文题目：DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION
-0. 一句话总结 (TL;DR) (这篇论文用什么方法，解决了什么问题，达到了什么效果)">
+  <meta property="og:description" content="通过深度采样的方式，一个预测得到多个预测位置，其他位置的score 低于当前预测，增加了Recall；">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -20,16 +16,10 @@
     <meta property="article:tag" content="一对多">
     <meta property="article:tag" content="深度采样">
     <meta property="article:tag" content="后处理">
-    <meta property="og:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg">
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION">
-  <meta name="twitter:description" content="🏛️ 会议/期刊：ICLR
-📅 发表年份：2022
-💻 开源代码：GitHub 链接
-📄 论文题目：DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION
-0. 一句话总结 (TL;DR) (这篇论文用什么方法，解决了什么问题，达到了什么效果)">
+  <meta name="twitter:description" content="通过深度采样的方式，一个预测得到多个预测位置，其他位置的score 低于当前预测，增加了Recall；">
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -45,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/digging-into-output-representation-for-monocular-3d-object-detection\/"
-        },"genre": "posts","keywords": "一对多, 深度采样, 后处理","wordcount":  1390 ,
+        },"genre": "posts","keywords": "一对多, 深度采样, 后处理","wordcount":  1393 ,
         "url": "https:\/\/zhaoylee.github.io\/Blogs_lovelt\/posts\/digging-into-output-representation-for-monocular-3d-object-detection\/","datePublished": "2026-03-13T15:27:43+08:00","dateModified": "2026-03-13T15:27:43+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -144,7 +134,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/Blogs_lovelt/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>zhaoylee</a></span>&nbsp;<span class="post-category">收录于 <a href="/Blogs_lovelt/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/"><i class="far fa-folder" aria-hidden="true"></i>即插即用型</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar fa-fw"></i>&nbsp;<time datetime="2026-03-13">2026-03-13</time>&nbsp;<i class="far fa-calendar-plus fa-fw"></i>&nbsp;<time datetime="2026-03-13">2026-03-13</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1390 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar fa-fw"></i>&nbsp;<time datetime="2026-03-13">2026-03-13</time>&nbsp;<i class="far fa-calendar-plus fa-fw"></i>&nbsp;<time datetime="2026-03-13">2026-03-13</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1393 字&nbsp;
                 <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;
     
 
@@ -163,11 +153,11 @@
         </div><div class="featured-image"><img
         class="lazyload"
         src="/Blogs_lovelt/svg/loading.min.svg"
-        data-src="/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg"
-        data-srcset="/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg, /Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg 1.5x, /Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg 2x"
+        data-src="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png, https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png 1.5x, https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png 2x"
         data-sizes="auto"
-        alt="/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg"
-        title="/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/cover.jpg" width="487" height="371" /></div><div class="details toc" id="toc-static"  data-kept="">
+        alt="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png"
+        title="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -182,7 +172,7 @@
 </nav></div>
             </div><div class="content" id="content"><hr>
 <blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：ICLR<br>
+<p><strong>🏛️ 会议期刊</strong>：ICLR<br>
 <strong>📅 发表年份</strong>：2022<br>
 <strong>💻 开源代码</strong>：<a href="https://github.com/Owen-Liuyuxuan/visualDet3D/releases/tag/1.1.1" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
 <strong>📄 论文题目</strong>：<a href="https://openreview.net/pdf?id=mPlm356yMIP" target="_blank" rel="noopener noreffer ">DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION</a></p>
@@ -204,11 +194,15 @@
 </li>
 </ul>
 <hr>
-<p><em><figure><img src="/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/main.jpg" width="100%"><figcaption>
-      <h4>整体框架图</h4>
-    </figcaption>
+<figure style="text-align:center;">
+  <img 
+    src="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230501492.png"
+    style="border-radius:6px; box-shadow:0 2px 10px rgba(0,0,0,0.1);"
+    width="85%">
+  <figcaption style="color:#999; margin-top:8px;">
+    Fig. 1: 两种采样方式
+  </figcaption>
 </figure>
-</em></p>
 <hr>
 <h2 id="2-核心方法-method">2. 核心方法 (Method)</h2>
 <p><em>(具体怎么做的？比如额外辅助模型是怎么引入的？数据增强的具体流程是什么？)</em></p>
@@ -235,11 +229,15 @@
 </li>
 </ol>
 <hr>
-<p><em><figure><img src="/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/result.jpg" width="90%"><figcaption>
-      <h4>结果对比</h4>
-    </figcaption>
+<figure style="text-align:center;">
+  <img 
+    src="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230422347.png"
+    style="border-radius:6px; box-shadow:0 2px 10px rgba(0,0,0,0.1);"
+    width="85%">
+  <figcaption style="color:#999; margin-top:8px;">
+    Fig. 2: kitti val results
+  </figcaption>
 </figure>
-</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -249,7 +247,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION" data-hashtags="一对多,深度采样,后处理"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-hashtag="一对多"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION" data-image="cover.jpg"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2fzhaoylee.github.io%2fBlogs_lovelt%2fposts%2fdigging-into-output-representation-for-monocular-3d-object-detection%2f&amp;text=DIGGING%20INTO%20OUTPUT%20REPRESENTATION%20FOR%20MONOCULAR%203D%20OBJECT%20DETECTION" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION" data-hashtags="一对多,深度采样,后处理"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-hashtag="一对多"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION" data-image="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/" data-title="DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2fzhaoylee.github.io%2fBlogs_lovelt%2fposts%2fdigging-into-output-representation-for-monocular-3d-object-detection%2f&amp;text=DIGGING%20INTO%20OUTPUT%20REPRESENTATION%20FOR%20MONOCULAR%203D%20OBJECT%20DETECTION" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>

@@ -28,17 +28,8 @@
     <author>zhaoylee</author>
     <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/Blogs_lovelt/cover.jpg" referrerpolicy="no-referrer">
-            </div><hr>
-<blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：ICLR<br>
-<strong>📅 发表年份</strong>：2022<br>
-<strong>💻 开源代码</strong>：<a href="https://github.com/Owen-Liuyuxuan/visualDet3D/releases/tag/1.1.1" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
-<strong>📄 论文题目</strong>：<a href="https://openreview.net/pdf?id=mPlm356yMIP" target="_blank" rel="noopener noreffer ">DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION</a></p>
-</blockquote>
-<hr>
-<h2 id="0-一句话总结-tldr">0. 一句话总结 (TL;DR)</h2>
-<p><em>(这篇论文用什么方法，解决了什么问题，达到了什么效果)</em></p>]]></description>
+                <img src="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png" referrerpolicy="no-referrer">
+            </div>通过深度采样的方式，一个预测得到多个预测位置，其他位置的score 低于当前预测，增加了Recall；]]></description>
 </item>
 </channel>
 </rss>

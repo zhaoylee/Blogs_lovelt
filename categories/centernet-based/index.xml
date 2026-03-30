@@ -43,24 +43,6 @@
 <p>这篇由 NVIDIA 等机构的研究人员发表在 CVPR 2024 的重磅论文 <strong>《Improving Distant 3D Object Detection Using 2D Box Supervision》(简称 LR3D)</strong>，切入了一个目前高阶自动驾驶极其头疼的落地难题：<strong>远距离感知（Long-Range Detection）</strong>。它展示了如何用最廉价的标注，榨取单目视觉在远距离上的极限潜力。</p>]]></description>
 </item>
 <item>
-    <title>MonoXiver： Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver</title>
-    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/</link>
-    <pubDate>Sun, 15 Mar 2026 21:14:36 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/monoxiver--monocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceivermonocular-3d-object-detection-with-bounding-box-denoising-in-3d-by-perceiver/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/Blogs_lovelt/cover.jpg" referrerpolicy="no-referrer">
-            </div><hr>
-<blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：ICCV<br>
-<strong>📅 发表年份</strong>：2023<br>
-<strong>💻 开源代码</strong>：<a href="https://github.com/Xianpeng919/monoxiver" target="_blank" rel="noopener noreffer ">Xianpeng919/monoxiver (ICCV'23)</a><br>
-<strong>📄 论文题目</strong>：<a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Liu_Monocular_3D_Object_Detection_with_Bounding_Box_Denoising_in_3D_ICCV_2023_paper.pdf" target="_blank" rel="noopener noreffer ">Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver</a></p>
-</blockquote>
-<hr>
-<p>这篇发表于 ICCV 2023 的论文 <strong>《Monocular 3D Object Detection with Bounding Box Denoising in 3D by Perceiver》(简称 MonoXiver)</strong>，提供了一个非常经典且极具工程价值的“自上而下（Top-down）”纠错思路。它并没有试图发明一种全新的主干网络，而是设计了一个强大的“插件”，专门用来拯救那些定位不准的预测框。</p>]]></description>
-</item>
-<item>
     <title>PLOT: Pseudo-Labeling via Object Tracking for Monocular 3D Object Detection</title>
     <link>https://zhaoylee.github.io/Blogs_lovelt/posts/plot---pseudo-labeling-via-object-tracking-for-monocular-3d-object-detection/</link>
     <pubDate>Sun, 15 Mar 2026 20:52:51 &#43;0800</pubDate>

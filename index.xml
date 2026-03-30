@@ -3,9 +3,19 @@
         <title>Zhaoylee&#39;s Blogs</title>
         <link>https://zhaoylee.github.io/Blogs_lovelt/</link>
         <description>This is my cool site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 30 Mar 2026 10:44:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 30 Mar 2026 23:17:02 &#43;0800</lastBuildDate>
             <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Mix-Teaching: A Simple, Unified and Effective  Semi-Supervised Learning Framework for  Monocular 3D Object Detection</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/mix-teaching--a-simple-unified-and-effective--semi-supervised-learning-framework-for--monocular-3d-object-detection/</link>
+    <pubDate>Mon, 30 Mar 2026 23:17:02 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/mix-teaching--a-simple-unified-and-effective--semi-supervised-learning-framework-for--monocular-3d-object-detection/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330231443214.png" referrerpolicy="no-referrer">
+            </div>本文提出 Mix-Teaching，首个专为单目 3D 目标检测设计的半监督学习统一框架。针对伪标签“低精度与低召回率”导致的确认偏差痛点，创新性提出“分解-重组”的跨帧实例级混合机制，并结合基于不确定性的过滤策略，优雅且高效地释放了无标注数据的潜力。]]></description>
+</item>
+<item>
     <title>Adaptive Dual Uncertainty Optimization: Boosting Monocular 3D Object Detection under Test Time Shifts</title>
     <link>https://zhaoylee.github.io/Blogs_lovelt/posts/adaptive-dual-uncertainty-optimization---boosting-monocular-3d-object-detection-under-test-time-shifts/</link>
     <pubDate>Mon, 30 Mar 2026 10:44:00 &#43;0800</pubDate>
@@ -160,27 +170,6 @@ for Monocular 3D Object Detection</title>
 <ul>
 <li>
 <p><strong>研究背景：</strong> 单目 3D 目标检测模型极度“吃数据”。然而，人工标注 3D 边界框极其昂贵且耗时，导致目前带 3D 标签的数据集规模很小，严重限制了模型的泛化能力。</p>]]></description>
-</item>
-<item>
-    <title>Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</title>
-    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</link>
-    <pubDate>Sun, 15 Mar 2026 20:52:49 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/monodlgd--difficulty-aware-label-guided-denoising-for-monocular-3d-object-detection/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/Blogs_lovelt/cover.jpg" referrerpolicy="no-referrer">
-            </div><hr>
-<blockquote>
-<p><strong>🏛️ 会议/期刊</strong>：AAAI <br>
-<strong>📅 发表年份</strong>：2026<br>
-<strong>💻 开源代码</strong>：<a href="https://github.com/lsy010857/MonoDLGD" target="_blank" rel="noopener noreffer ">MonoDLGD</a><br>
-<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2511.13195" target="_blank" rel="noopener noreffer ">Difficulty-Aware Label-Guided Denoising for Monocular 3D Object Detection</a></p>
-</blockquote>
-<hr>
-<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
-<ul>
-<li>
-<p><strong>研究背景：</strong> 在基于 Transformer 的单目 3D 目标检测中，通过向真实标签注入噪声并让模型去重构（即查询去噪 Query Denoising），能有效加速模型收敛并提升几何感知能力。</p>]]></description>
 </item>
 </channel>
 </rss>
