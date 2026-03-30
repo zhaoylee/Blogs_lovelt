@@ -3,19 +3,9 @@
         <title>Zhaoylee&#39;s Blogs</title>
         <link>https://zhaoylee.github.io/Blogs_lovelt/</link>
         <description>This is my cool site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Mar 2026 10:48:33 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 16 Mar 2026 09:12:18 &#43;0800</lastBuildDate>
             <atom:link href="https://zhaoylee.github.io/Blogs_lovelt/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>OBMO: One Bounding Box Multiple Objects for Monocular 3D Object Detection</title>
-    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/new_post/</link>
-    <pubDate>Tue, 24 Mar 2026 10:48:33 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/new_post/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/Blogs_lovelt/cover.jpg" referrerpolicy="no-referrer">
-            </div>简述:一个框对应多个物体位置，通过施加软标签，帮助网络训练稳定，从而提升一定的性能;]]></description>
-</item>
-<item>
     <title>OCM3D: Object-Centric Monocular 3D Object Detection</title>
     <link>https://zhaoylee.github.io/Blogs_lovelt/posts/ocm3d--object-centric-monocular-3d-object-detection/</link>
     <pubDate>Mon, 16 Mar 2026 09:12:18 &#43;0800</pubDate>
@@ -192,6 +182,27 @@ for Monocular 3D Object Detection</title>
 <ul>
 <li>
 <p><strong>研究背景：</strong> 近年来，基于 Transformer（特别是 DETR 架构）的模型在 2D 目标检测中取得了巨大成功，并顺理成章地被引入到单目 3D 目标检测（M3OD）领域。这类模型依赖“查询（Query）”机制和“二分图匹配（Bipartite Matching）”来端到端地输出检测结果，无需繁琐的非极大值抑制（NMS）。</p>]]></description>
+</item>
+<item>
+    <title>Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/</link>
+    <pubDate>Sun, 15 Mar 2026 19:59:15 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/Blogs_lovelt/cover.jpg" referrerpolicy="no-referrer">
+            </div><hr>
+<blockquote>
+<p><strong>🏛️ 会议/期刊</strong>：IJCV<br>
+<strong>📅 发表年份</strong>：2026<br>
+<strong>💻 开源代码</strong>：<a href="https://github.com/kwong292521/DR-Traversal-M3D" target="_blank" rel="noopener noreffer ">GitHub 链接</a><br>
+<strong>📄 论文题目</strong>：<a href="https://arxiv.org/pdf/2602.20627" target="_blank" rel="noopener noreffer ">Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection</a></p>
+</blockquote>
+<hr>
+<h3 id="一-背景研究目的与核心问题">一、 背景、研究目的与核心问题</h3>
+<ul>
+<li>
+<p><strong>研究背景：</strong> 单目 3D 目标检测本身是一个病态（ill-posed）问题，由于缺乏深度信息，模型极度依赖海量、多样化的训练数据来学习鲁棒的特征。</p>]]></description>
 </item>
 </channel>
 </rss>
