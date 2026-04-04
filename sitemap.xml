@@ -2,12 +2,17 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://zhaoylee.github.io/Blogs_lovelt/categories/</loc><lastmod>2026-03-30T23:17:02&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/categories/</loc><lastmod>2026-04-04T12:31:36&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/monolss--learnable-sample-selection-for-monocular-3d-detection/</loc><lastmod>2026-04-04T12:31:36&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/</loc><lastmod>2026-04-04T12:31:36&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/</loc><lastmod>2026-04-04T12:31:36&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/</loc><lastmod>2026-04-04T12:31:36&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/</loc><lastmod>2026-04-04T12:31:36&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/</loc><lastmod>2026-04-04T12:31:36&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/iter3ddet---depth-guided-iterative-fusion-and-refinement-for--monocular-3d-object-detection/</loc><lastmod>2026-04-04T12:24:33&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/categories/transformer-based/</loc><lastmod>2026-04-04T12:24:33&#43;08:00</lastmod></url><url>
+            <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E8%BF%AD%E4%BB%A3%E7%BB%86%E5%8C%96/</loc><lastmod>2026-04-04T12:24:33&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/mix-teaching--a-simple-unified-and-effective--semi-supervised-learning-framework-for--monocular-3d-object-detection/</loc><lastmod>2026-03-30T23:17:02&#43;08:00</lastmod></url><url>
-            <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/</loc><lastmod>2026-03-30T23:17:02&#43;08:00</lastmod></url><url>
-            <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/</loc><lastmod>2026-03-30T23:17:02&#43;08:00</lastmod></url><url>
-            <loc>https://zhaoylee.github.io/Blogs_lovelt/</loc><lastmod>2026-03-30T23:17:02&#43;08:00</lastmod></url><url>
-            <loc>https://zhaoylee.github.io/Blogs_lovelt/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/</loc><lastmod>2026-03-30T23:17:02&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%8A%80%E6%9C%AF%E7%82%B91/</loc><lastmod>2026-03-30T23:17:02&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%8A%80%E6%9C%AF%E7%82%B92/</loc><lastmod>2026-03-30T23:17:02&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/adaptive-dual-uncertainty-optimization---boosting-monocular-3d-object-detection-under-test-time-shifts/</loc><lastmod>2026-03-30T10:44:00&#43;08:00</lastmod></url><url>
@@ -27,7 +32,6 @@
             <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E9%95%BF%E8%B7%9D%E7%A6%BB%E6%84%9F%E7%9F%A5/</loc><lastmod>2026-03-15T22:23:00&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/2d%E5%BC%95%E5%AF%BC3d/</loc><lastmod>2026-03-15T21:59:16&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/streampetr-qaf2d--enhancing-3d-object-detection-with-2d-detection-guided-query-anchors/</loc><lastmod>2026-03-15T21:59:16&#43;08:00</lastmod></url><url>
-            <loc>https://zhaoylee.github.io/Blogs_lovelt/categories/transformer-based/</loc><lastmod>2026-03-15T21:59:16&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/obmo--one-bounding-box-multiple-objects-for-monocular-3d-object-detection/</loc><lastmod>2026-03-15T21:59:12&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/open-vocabulary-monocular-3d-object-detection/</loc><lastmod>2026-03-15T21:14:37&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/vlm/</loc><lastmod>2026-03-15T21:14:37&#43;08:00</lastmod></url><url>
@@ -47,7 +51,6 @@
             <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E5%8F%98%E5%88%86%E5%8E%BB%E5%99%AA/</loc><lastmod>2026-03-15T20:36:42&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/</loc><lastmod>2026-03-15T19:59:15&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E9%83%A8%E5%88%86%E6%A0%87%E6%B3%A8/</loc><lastmod>2026-03-15T19:59:15&#43;08:00</lastmod></url><url>
-            <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/</loc><lastmod>2026-03-15T19:59:15&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/posts/spikesmoke--spiking-neural-networks-for-monocular-3d-object-detection-with-cross-scale-gated-coding/</loc><lastmod>2026-03-15T19:59:10&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E8%B7%A8%E5%B0%BA%E5%BA%A6/</loc><lastmod>2026-03-15T19:59:10&#43;08:00</lastmod></url><url>
             <loc>https://zhaoylee.github.io/Blogs_lovelt/tags/%E9%97%A8%E6%8E%A7/</loc><lastmod>2026-03-15T19:59:10&#43;08:00</lastmod></url><url>

@@ -3,7 +3,17 @@
         <title>即插即用型 - 分类 - Zhaoylee&#39;s Blogs</title>
         <link>https://zhaoylee.github.io/Blogs_lovelt/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/</link>
         <description>即插即用型 - 分类 - Zhaoylee&#39;s Blogs</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 30 Mar 2026 23:17:02 &#43;0800</lastBuildDate><atom:link href="https://zhaoylee.github.io/Blogs_lovelt/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 04 Apr 2026 12:31:36 &#43;0800</lastBuildDate><atom:link href="https://zhaoylee.github.io/Blogs_lovelt/categories/%E5%8D%B3%E6%8F%92%E5%8D%B3%E7%94%A8%E5%9E%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>MONOLSS  Learnable Sample Selection For Monocular 3D Detection</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/monolss--learnable-sample-selection-for-monocular-3d-detection/</link>
+    <pubDate>Sat, 04 Apr 2026 12:31:36 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/monolss--learnable-sample-selection-for-monocular-3d-detection/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png" referrerpolicy="no-referrer">
+            </div>博客的简述]]></description>
+</item>
+<item>
     <title>Mix-Teaching: A Simple, Unified and Effective  Semi-Supervised Learning Framework for  Monocular 3D Object Detection</title>
     <link>https://zhaoylee.github.io/Blogs_lovelt/posts/mix-teaching--a-simple-unified-and-effective--semi-supervised-learning-framework-for--monocular-3d-object-detection/</link>
     <pubDate>Mon, 30 Mar 2026 23:17:02 &#43;0800</pubDate>
@@ -150,16 +160,6 @@ for Monocular 3D Object Detection</title>
 <ul>
 <li>
 <p><strong>研究背景：</strong> 单目 3D 目标检测本身是一个病态（ill-posed）问题，由于缺乏深度信息，模型极度依赖海量、多样化的训练数据来学习鲁棒的特征。</p>]]></description>
-</item>
-<item>
-    <title>DIGGING INTO OUTPUT REPRESENTATION FOR MONOCULAR 3D OBJECT DETECTION</title>
-    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/</link>
-    <pubDate>Fri, 13 Mar 2026 15:27:43 &#43;0800</pubDate>
-    <author>zhaoylee</author>
-    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/digging-into-output-representation-for-monocular-3d-object-detection/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png" referrerpolicy="no-referrer">
-            </div>通过深度采样的方式，一个预测得到多个预测位置，其他位置的score 低于当前预测，增加了Recall；]]></description>
 </item>
 </channel>
 </rss>

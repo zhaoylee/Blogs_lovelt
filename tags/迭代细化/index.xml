@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>迭代细化 - 标签 - Zhaoylee&#39;s Blogs</title>
+        <link>https://zhaoylee.github.io/Blogs_lovelt/tags/%E8%BF%AD%E4%BB%A3%E7%BB%86%E5%8C%96/</link>
+        <description>迭代细化 - 标签 - Zhaoylee&#39;s Blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 04 Apr 2026 12:24:33 &#43;0800</lastBuildDate><atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E8%BF%AD%E4%BB%A3%E7%BB%86%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+    <title>Iter3DDet: Depth Guided Iterative Fusion and Refinement for Monocular 3D Object Detection</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/iter3ddet---depth-guided-iterative-fusion-and-refinement-for--monocular-3d-object-detection/</link>
+    <pubDate>Sat, 04 Apr 2026 12:24:33 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/iter3ddet---depth-guided-iterative-fusion-and-refinement-for--monocular-3d-object-detection/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260404131128430.png" referrerpolicy="no-referrer">
+            </div>博客的简述]]></description>
+</item>
+</channel>
+</rss>

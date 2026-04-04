@@ -3,7 +3,17 @@
         <title>数据增强 - 标签 - Zhaoylee&#39;s Blogs</title>
         <link>https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/</link>
         <description>数据增强 - 标签 - Zhaoylee&#39;s Blogs</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2026 19:59:15 &#43;0800</lastBuildDate><atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 04 Apr 2026 12:31:36 &#43;0800</lastBuildDate><atom:link href="https://zhaoylee.github.io/Blogs_lovelt/tags/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/" rel="self" type="application/rss+xml" /><item>
+    <title>MONOLSS  Learnable Sample Selection For Monocular 3D Detection</title>
+    <link>https://zhaoylee.github.io/Blogs_lovelt/posts/monolss--learnable-sample-selection-for-monocular-3d-detection/</link>
+    <pubDate>Sat, 04 Apr 2026 12:31:36 &#43;0800</pubDate>
+    <author>zhaoylee</author>
+    <guid>https://zhaoylee.github.io/Blogs_lovelt/posts/monolss--learnable-sample-selection-for-monocular-3d-detection/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://cdn.jsdelivr.net/gh/zhaoylee/BlogImage@main/blogs/20260330230353149.png" referrerpolicy="no-referrer">
+            </div>博客的简述]]></description>
+</item>
+<item>
     <title>Object-Scene-Camera Decomposition and Recomposition for Data-Efficient Monocular 3D Object Detection</title>
     <link>https://zhaoylee.github.io/Blogs_lovelt/posts/dr-traversal-m3d--object-scene-camera-decomposition-and-recomposition-for-data-efficient-monocular-3d-object-detection/</link>
     <pubDate>Sun, 15 Mar 2026 19:59:15 &#43;0800</pubDate>
